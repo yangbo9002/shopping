@@ -26,7 +26,7 @@ public class BaseDaoImpl<T> implements BaseDao<T>{
 	public BaseDaoImpl() {
 		//动态获取泛型的class对象实现hibernate参数的传入
 		Type type = getClass().getGenericSuperclass();
-		cla = (Class<T>) ((ParameterizedType) type).getActualTypeArguments()[0];
+		cla = (Class<T>)((ParameterizedType) type).getActualTypeArguments()[0];
 	}
 	
 	/* (non-Javadoc)

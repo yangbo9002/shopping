@@ -24,6 +24,7 @@ public class Orders {//订单表
 	private String userPhone;//收货人手机号码
 	private Integer isClosed;//订单是否完结		0:未完结	1:已完结
 	private Date createTime;//下单时间
+	
 	public Integer getOrderId() {
 		return orderId;
 	}

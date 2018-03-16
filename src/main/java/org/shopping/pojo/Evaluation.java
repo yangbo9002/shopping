@@ -15,7 +15,7 @@ public class Evaluation {//商品评价表
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
+	private Integer eid;
 	@ManyToOne
 	@JoinColumn(name="shopId")
 	private Shop shop;//所属店铺
@@ -35,10 +35,10 @@ public class Evaluation {//商品评价表
 	private Date createTime;//评价时间
 	private Date replyTime;//店铺回复时间
 	public Integer getId() {
-		return id;
+		return eid;
 	}
 	public void setId(Integer id) {
-		this.id = id;
+		this.eid = id;
 	}
 	public Shop getShop() {
 		return shop;

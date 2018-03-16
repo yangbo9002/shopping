@@ -11,6 +11,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 @Entity
 public class Goods {//商品信息表
 	
@@ -23,7 +26,8 @@ public class Goods {//商品信息表
 	private Double shopPrice;//店铺价格
 	private Integer goodsStock;//商品总库存
 	private String goodsTips;//促销信息
-	private Integer isNew;//是否新品      1:新品     0:不是新品
+	private String isNew;//是否新品      Y:新品     N:不是新品
+	private String isBoard;//是否上架	  Y:上架     N:下架	
 	//private Integer brandId;
 	@ManyToOne
 	@JoinColumn(name="brandId")
@@ -33,24 +37,20 @@ public class Goods {//商品信息表
 	private Integer visitNum;//访问数
 	//private Integer shopId;
 	@ManyToOne
-	@JoinColumn(name="usersId")
+	@JoinColumn(name="shopId")
 	private Shop shop;//所属店铺
 	@ManyToOne
 	@JoinColumn(name="cid")
-	private Classification cation;//所属分类
+	private Classification cation;//最后一级上级分类
 	//private Integer attrId;
 	@OneToMany
 	@JoinColumn(name="goodsId")
 	private List<GoodAttr> goodAttr;//商品属性关系表
 	@OneToMany
+	@Cascade(value={CascadeType.SAVE_UPDATE}) 
 	@JoinColumn(name="goodsId")
 	private List<GoodImages> image;
-	@OneToMany
-	@JoinColumn(name="id")
-	private List<Evaluation> evaluation;//商品评价
-	@OneToMany
-	@JoinColumn(name="cartId")
-	private List<Carts> carts;//购物车
+
 	private Date createTime;//添加时间
 	
 	public Date getCreateTime() {
@@ -62,6 +62,12 @@ public class Goods {//商品信息表
 	public Integer getGoodsId() {
 		return goodsId;
 	}
+	public List<GoodAttr> getGoodAttr() {
+		return goodAttr;
+	}
+	public void setGoodAttr(List<GoodAttr> goodAttr) {
+		this.goodAttr = goodAttr;
+	}
 	public void setGoodsId(Integer goodsId) {
 		this.goodsId = goodsId;
 	}
@@ -70,12 +76,6 @@ public class Goods {//商品信息表
 	}
 	public void setGoodsName(String goodsName) {
 		this.goodsName = goodsName;
-	}
-	public List<Evaluation> getEvaluation() {
-		return evaluation;
-	}
-	public void setEvaluation(List<Evaluation> evaluation) {
-		this.evaluation = evaluation;
 	}
 	public String getGoodsImg() {
 		return goodsImg;
@@ -107,12 +107,6 @@ public class Goods {//商品信息表
 	public void setGoodsTips(String goodsTips) {
 		this.goodsTips = goodsTips;
 	}
-	public Integer getIsNew() {
-		return isNew;
-	}
-	public void setIsNew(Integer isNew) {
-		this.isNew = isNew;
-	}
 	public Brand getBrand() {
 		return brand;
 	}
@@ -143,12 +137,6 @@ public class Goods {//商品信息表
 	public void setShop(Shop shop) {
 		this.shop = shop;
 	}
-	public List<GoodAttr> getGoodAttr() {
-		return goodAttr;
-	}
-	public void setGoodAttr(List<GoodAttr> goodAttr) {
-		this.goodAttr = goodAttr;
-	}
 	public Classification getCation() {
 		return cation;
 	}
@@ -161,19 +149,17 @@ public class Goods {//商品信息表
 	public void setImage(List<GoodImages> image) {
 		this.image = image;
 	}
-	public List<Carts> getCarts() {
-		return carts;
+	public String getIsNew() {
+		return isNew;
 	}
-	public void setCarts(List<Carts> carts) {
-		this.carts = carts;
+	public void setIsNew(String isNew) {
+		this.isNew = isNew;
 	}
-	@Override
-	public String toString() {
-		return "Goods [goodsId=" + goodsId + ", goodsName=" + goodsName + ", goodsImg=" + goodsImg + ", marketPrice="
-				+ marketPrice + ", shopPrice=" + shopPrice + ", goodsStock=" + goodsStock + ", goodsTips=" + goodsTips
-				+ ", isNew=" + isNew + ", brand=" + brand + ", goodsInfo=" + goodsInfo + ", saleNum=" + saleNum
-				+ ", visitNum=" + visitNum + ", shop=" + shop + ", cation=" + cation + ", goodAttr=" + goodAttr
-				+ ", image=" + image + ", evaluation=" + evaluation + ", carts=" + carts + "]";
+	public String getIsBoard() {
+		return isBoard;
+	}
+	public void setIsBoard(String isBoard) {
+		this.isBoard = isBoard;
 	}
 	
 }

@@ -12,6 +12,7 @@ public class GoodAttr {//商品属性关系表
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer gaId;
+
 	public Integer getGaId() {
 		return gaId;
 	}

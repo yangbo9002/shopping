@@ -1,10 +1,12 @@
 package org.shopping.pojo;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -23,17 +25,28 @@ public class Carts {//购物车表
 	@OneToOne
 	@JoinColumn(name="valId")
 	private AttriburesVal attrVal;//属性值
-	public Integer getCartId() {
-		return cartId;
-	}
-	public void setCartId(Integer cartId) {
-		this.cartId = cartId;
-	}
+	
+	@ManyToOne
+	@JoinColumn(name="usersId")
+	private Users user;//所属用户
+	
 	public Goods getGood() {
 		return good;
 	}
 	public void setGood(Goods good) {
 		this.good = good;
+	}
+	public Users getUser() {
+		return user;
+	}
+	public void setUser(Users user) {
+		this.user = user;
+	}
+	public Integer getCartId() {
+		return cartId;
+	}
+	public void setCartId(Integer cartId) {
+		this.cartId = cartId;
 	}
 	public Integer getCartNum() {
 		return cartNum;

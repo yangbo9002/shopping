@@ -15,6 +15,7 @@ public class Address {//收货地址表
 	private String usersPhone;//收货人手机号码
 	private String address;//收货地址
 	private Integer isDefault;//是否默认地址    1:默认地址 0:不是默认地址
+	
 	public Integer getAddressId() {
 		return addressId;
 	}
@@ -45,12 +46,6 @@ public class Address {//收货地址表
 	public void setIsDefault(Integer isDefault) {
 		this.isDefault = isDefault;
 	}
-	@Override
-	public String toString() {
-		return "Address [addressId=" + addressId + ", uname=" + uname + ", usersPhone=" + usersPhone + ", address="
-				+ address + ", isDefault=" + isDefault + "]";
-	}
-	
 	
 
 }
