@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.shopping.service.impl.TestService;
+import org.shopping.service.GoodsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class GoodsController {
 	
 	@Resource
-	private TestService tes;
+	private GoodsService gs;
 	
-	@RequestMapping("/test")
+	@RequestMapping("/qury")
 	@ResponseBody
 	public List<?> fun(){
 		String sql = "select * from goods;";
-		List<?> list = tes.select(sql);
+		List<?> list = gs.select(sql);
 		return list;
 		
 	}
