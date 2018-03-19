@@ -32,6 +32,9 @@ public class Users {//用户信息表
 	@OneToMany
 	@JoinColumn(name="usersId")
 	private List<Orders> orders;//用户订单
+	@OneToMany
+	@JoinColumn(name="usersId")
+	private List<Collect> collect;//用户收藏
 	private Date createTime;//创建时间
 	public String getLoginName() {
 		return loginName;
