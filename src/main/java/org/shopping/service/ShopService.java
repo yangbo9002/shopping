@@ -6,4 +6,5 @@ import org.shopping.pojo.Shop;
 
 public interface ShopService {
 	List<Shop> select(String sql);
+	
 }
