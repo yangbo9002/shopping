@@ -1,5 +1,9 @@
 package org.shopping.service;
 
-public interface ShopService {
+import java.util.List;
 
+import org.shopping.pojo.Shop;
+
+public interface ShopService {
+	List<Shop> select(String sql);
 }
