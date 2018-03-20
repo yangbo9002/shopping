@@ -27,18 +27,32 @@ public class AddressServiceImpl implements AddressService{
 		return addresses;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.shopping.service.AddressService#selectAddress(java.lang.String)
+	 * 
+	 *添加收货地址
+	 */
 	@Override
-	public Address insertAddress(Address address) {
+	public void insertAddress(Address address) {
 		// TODO Auto-generated method stub
-		return null;
+		
 	}
 
+	/* (non-Javadoc)
+	 * @see org.shopping.service.AddressService#selectAddress(java.lang.String)
+	 * 
+	 *删除收货地址
+	 */
 	@Override
-	public Address deleteAddress(Integer aid) {
-		// TODO Auto-generated method stub
-		return null;
+	public void deleteAddress(Integer addressId) {
+		ad.delete(addressId);		
 	}
 
+	/* (non-Javadoc)
+	 * @see org.shopping.service.AddressService#selectAddress(java.lang.String)
+	 * 
+	 *修改收货地址
+	 */
 	@Override
 	public Address updateAddress(Address address) {
 		// TODO Auto-generated method stub

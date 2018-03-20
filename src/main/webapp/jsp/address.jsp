@@ -6,19 +6,28 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="js/jquery.min.js"></script>
 </head>
 <body>
 
 <table border="1px">
 <tr>
-<td >收货地址</td>
+<td colspan="3" align="center">收货地址</td>
 </tr>
 
 <c:forEach items="${address }" var="address">
-<tr><td>${address.address }</td></tr>
+<tr><td>${address.address }</td>
+<td><button>修改收货地址</button></td>
+<td><button onclick="del('${address.addressId }')">删除收货地址</button></button></td>
+</tr>
 </c:forEach>
-
 </table>
-
+<a href="#">添加收货地址</a>
+<script type="text/javascript">
+function del(addressId){
+	location.href="deleteAddress?addressId="+addressId;
+	
+}
+</script>
 </body>
 </html>

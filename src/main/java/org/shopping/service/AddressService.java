@@ -8,9 +8,9 @@ public interface AddressService{
 	//²éÑ¯
 	List<Address> selectAddress(String sql);
 	//Ìí¼Ó
-	Address insertAddress(Address address);
+	void insertAddress(Address address);
 	//É¾³ı
-	Address deleteAddress(Integer aid);
+	void deleteAddress(Integer addressId);
 	//ĞŞ¸Ä
 	Address updateAddress(Address address);
 
