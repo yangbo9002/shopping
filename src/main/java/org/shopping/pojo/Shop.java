@@ -1,4 +1,4 @@
-package org.shopping.pojo;
+  package org.shopping.pojo;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,7 +13,7 @@ public class Shop {//µÍ∆Ã±Ì
 		@Id
 		@GeneratedValue(strategy=GenerationType.IDENTITY)
 		private Integer shopId;//µÍ∆Ã±‡∫≈
-		private String shopName;//µÍ∆Ã√˚≥∆
+		private String shopName;//µÍ∆Ã√˚≥∆-°æ°æ
 		private String shopLogo;//µÍ∆Ãlogo
 		//private Integer usersId;//À˘ Ù”√ªß
 		private String shopText;//µÍ∆Ã–≈œ¢

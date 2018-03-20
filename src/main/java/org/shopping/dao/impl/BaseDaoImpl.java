@@ -71,6 +71,7 @@ public class BaseDaoImpl<T> implements BaseDao<T>{
 		Session session = sf.getCurrentSession();
 		T t = session.get(cla, id);
 		session.delete(t);
+		
 	}
 
 }
