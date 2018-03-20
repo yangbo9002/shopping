@@ -1,10 +1,7 @@
 package org.shopping.service;
 
-import java.util.List;
-
 import org.shopping.pojo.Orders;
 
-public interface OrdersService {
+public interface OrdersService extends BaseService<Orders>{
 
-	List<Orders> select(String sql);
 }
