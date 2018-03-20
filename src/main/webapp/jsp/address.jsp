@@ -9,20 +9,29 @@
 <script type="text/javascript" src="js/jquery.min.js"></script>
 </head>
 <body>
-
 <table border="1px">
 <tr>
-<td colspan="3" align="center">收货地址</td>
+<td colspan="6" align="center">收货地址</td>
 </tr>
-
+<tr>
+<td>编号</td>
+<td>收货人姓名</td>
+<td>收货人电话</td>
+<td>收货地址</td>
+<td colspan="2" align="center">操作</td>
+</tr>
 <c:forEach items="${address }" var="address">
-<tr><td>${address.address }</td>
+<tr>
+<td>${address.addressId }</td>
+<td>${address.uname }</td>
+<td>${address.usersPhone }</td>
+<td>${address.address }</td>
 <td><button>修改收货地址</button></td>
 <td><button onclick="del('${address.addressId }')">删除收货地址</button></button></td>
 </tr>
 </c:forEach>
 </table>
-<a href="#">添加收货地址</a>
+<a href="jsp/insertAddress.jsp">添加收货地址</a>
 <script type="text/javascript">
 function del(addressId){
 	location.href="deleteAddress?addressId="+addressId;

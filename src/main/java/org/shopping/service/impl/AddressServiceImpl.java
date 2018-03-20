@@ -34,7 +34,7 @@ public class AddressServiceImpl implements AddressService{
 	 */
 	@Override
 	public void insertAddress(Address address) {
-		// TODO Auto-generated method stub
+		ad.saveOrUpdate(address);
 		
 	}
 
