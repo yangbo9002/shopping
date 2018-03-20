@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class Classification {//商品分类表
 	
@@ -19,6 +21,7 @@ public class Classification {//商品分类表
 	//private Integer parentId;
 	@OneToOne
 	@JoinColumn(name="parentId")
+	@JsonIgnoreProperties("cation")
 	private Classification cation;//上级分类
 	private Date createTime;//创建时间
 	
