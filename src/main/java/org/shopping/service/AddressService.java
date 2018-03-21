@@ -12,6 +12,7 @@ public interface AddressService{
 	//É¾³ı
 	void deleteAddress(Integer addressId);
 	//ĞŞ¸Ä
-	Address updateAddress(Address address);
+	Address  selectAddressAid(Integer addressId);
+	void updateAddress(Address address);
 
 }

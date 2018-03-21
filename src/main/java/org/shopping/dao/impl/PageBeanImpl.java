@@ -9,9 +9,10 @@ import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 import org.shopping.dao.PageBeanDao;
 import org.shopping.pojo.PageBean;
+import org.springframework.stereotype.Repository;
 
 
-
+@Repository
 public class PageBeanImpl<T> implements PageBeanDao<T>{
 	
 	@Resource

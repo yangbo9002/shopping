@@ -47,5 +47,19 @@ public class AddressController {
 		as.insertAddress(address);
 		return "redirect:selectAddress";
 	}
+	
+	@RequestMapping("/selectAddressId")
+	public String fn4(Integer addressId,ModelMap map){
+		Address address=as.selectAddressAid(addressId);
+		map.put("address", address);
+		return "updateAddress";
+	}
+	
+	@RequestMapping("/updateAddress")
+	public String fn5(Address 
+			address){
+		as.updateAddress(address);
+		return "redirect:selectAddress";
+	}
 
 }

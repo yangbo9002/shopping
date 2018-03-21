@@ -53,10 +53,17 @@ public class AddressServiceImpl implements AddressService{
 	 * 
 	 *修改收货地址
 	 */
+	
+
 	@Override
-	public Address updateAddress(Address address) {
-		// TODO Auto-generated method stub
-		return null;
+	public Address selectAddressAid(Integer addressId) {
+		Address addresses  = (Address) ad.selectById(addressId);
+		return addresses;
+	}
+
+	@Override
+	public void updateAddress(Address address) {
+		ad.saveOrUpdate(address);		
 	}
 
 }
