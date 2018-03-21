@@ -20,7 +20,6 @@ public class Goods {//商品信息表
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer goodsId;//商品编号
-	private String goodsName;//商品名称
 	private String goodsImg;//商品图片
 	private Double marketPrice;//市场价格
 	private Double shopPrice;//店铺价格
@@ -70,12 +69,6 @@ public class Goods {//商品信息表
 	}
 	public void setGoodsId(Integer goodsId) {
 		this.goodsId = goodsId;
-	}
-	public String getGoodsName() {
-		return goodsName;
-	}
-	public void setGoodsName(String goodsName) {
-		this.goodsName = goodsName;
 	}
 	public String getGoodsImg() {
 		return goodsImg;
