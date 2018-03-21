@@ -20,9 +20,10 @@ public class Goods {//商品信息表
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer goodsId;//商品编号
-	private String goodsImg;//商品图片
+	private String goodsName;//商品名称
+	private String goodsImg;//商品图片/////////////
 	private Double marketPrice;//市场价格
-	private Double shopPrice;//店铺价格
+	private Double shopPrice;//店铺价格  ///////////////////
 	private Integer goodsStock;//商品总库存
 	private String goodsTips;//促销信息
 	private String isNew;//是否新品      Y:新品     N:不是新品
@@ -31,13 +32,13 @@ public class Goods {//商品信息表
 	@ManyToOne
 	@JoinColumn(name="brandId")
 	private Brand brand;//所属品牌
-	private String goodsInfo;//商品描述
+	private String goodsInfo;//商品描述/////////
 	private Integer saleNum;//总销售量
-	private Integer visitNum;//访问数
+	private Integer visitNum;//访问数///////
 	//private Integer shopId;
 	@ManyToOne
 	@JoinColumn(name="shopId")
-	private Shop shop;//所属店铺
+	private Shop shop;//所属店铺(店铺名称)
 	@ManyToOne
 	@JoinColumn(name="cid")
 	private Classification cation;//最后一级上级分类
@@ -69,6 +70,12 @@ public class Goods {//商品信息表
 	}
 	public void setGoodsId(Integer goodsId) {
 		this.goodsId = goodsId;
+	}
+	public String getGoodsName() {
+		return goodsName;
+	}
+	public void setGoodsName(String goodsName) {
+		this.goodsName = goodsName;
 	}
 	public String getGoodsImg() {
 		return goodsImg;
