@@ -26,7 +26,7 @@
 <td>${address.uname }</td>
 <td>${address.usersPhone }</td>
 <td>${address.address }</td>
-<td><button>修改收货地址</button></td>
+<td><button onclick="sel('${address.addressId}')">修改收货地址</button></td>
 <td><button onclick="del('${address.addressId }')">删除收货地址</button></button></td>
 </tr>
 </c:forEach>
@@ -34,9 +34,11 @@
 <a href="jsp/insertAddress.jsp">添加收货地址</a>
 <script type="text/javascript">
 function del(addressId){
-	location.href="deleteAddress?addressId="+addressId;
-	
+	location.href="deleteAddress?addressId="+addressId;	
 }
+function sel(addressId){
+	location.href="selectAddressId?addressId="+addressId;
+}				  
 </script>
-</body>
+</body>   
 </html>

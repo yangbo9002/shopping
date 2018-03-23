@@ -9,6 +9,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class Carts {//购物车表
 
@@ -17,10 +20,12 @@ public class Carts {//购物车表
 	private Integer cartId;//购物车编号
 	@OneToOne
 	@JoinColumn(name="goodsId")
+	@JsonIgnore
 	private Goods good;//商品
 	private Integer cartNum;//商品数量
 	@OneToOne
 	@JoinColumn(name="attrId")
+	@JsonIgnore
 	private Attribures attr;//商品属性
 	@OneToOne
 	@JoinColumn(name="valId")
@@ -28,6 +33,7 @@ public class Carts {//购物车表
 	
 	@ManyToOne
 	@JoinColumn(name="usersId")
+	@JsonIgnore//註解是放棄往下查詢
 	private Users user;//所属用户
 	
 	public Goods getGood() {
