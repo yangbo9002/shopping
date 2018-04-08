@@ -1,20 +1,61 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-  <script src='//g.alicdn.com/??kissy/k/6.2.4/seed-min.js,tbc/global/0.0.8/index-min.js,tms/tb-init/0.0.39/index-min.js'></script>
+	<script src='//g.alicdn.com/??kissy/k/6.2.4/seed-min.js,tbc/global/0.0.8/index-min.js,tms/tb-init/0.0.39/index-min.js'></script>
  <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" />  
 		<script type="text/javascript" src="../js/jquery-3.2.0.min.js" ></script>
 		<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js" ></script>
 	<link rel="stylesheet" href="../css/yemei.css" /> 
 	<link rel="stylesheet" href="../css/yang.css" /> 
+	 <link rel="stylesheet" href="../css/cla.css" /> 
+	<link rel="stylesheet" href="../css/clas.css" /> 
+	<link rel="stylesheet" href="../css/classi.css" /> 
+	
+	
+	<style type="text/css">
+		.tu{
+			height: 675px;
+		}
+		.wei{
+			float: left;
+		}
+		.xian{
+			text-decoration:line-through ;
+			text-align: right;
+		}
+		.sheng{
+			overflow: hidden; 
+      		text-overflow:ellipsis;  
+      		white-space: nowrap; 
+		}
+		.se{
+		 	font-size: 18px;
+			color: red;
+		}
+		
+	.qw{
+    position:relative;
+    bottom: 27px;
+    left:70px;
+	}
+	
+	</style>
+	
+	<script type="text/javascript">
+		$(function(){
+			
+		})
+	
+	</script>
+	
 </head>
 <body>
-	
+
 <div data-spm="620129" data-moduleid="80582" data-name="tb-top" data-guid="620129" id="guid-620129" data-scene-id="0" data-scene-version="" data-hidden="" data-gitgroup="tb-mod" data-ext="" class="tb-top J_Module" tms="tb-top/0.0.4" tms-datakey="0"><link rel="stylesheet" href="//g.alicdn.com/??kg/global-util/1.0.6/index-min.css,kg/tb-nav/2.4.2/index-min.css">
 <style>.footer a {display:inline !important;}</style>
 <div class="site-nav site-nav-status-logout" id="J_SiteNav" data-component-config="{ &quot;cart&quot;: &quot;0.0.6&quot;,&quot;message&quot;: &quot;3.4.6&quot;,&quot;umpp&quot;: &quot;1.5.4&quot;,&quot;mini-login&quot;: &quot;6.3.8&quot;,&quot;tb-ie-updater&quot;: &quot;0.0.4&quot;,&quot;tbar&quot;: &quot;2.1.0&quot;,&quot;tb-footer&quot;: &quot;1.1.6&quot;,&quot;sidebar&quot;: &quot;1.0.10&quot; }" data-tbar="{ &quot;show&quot;:true, &quot;miniCart&quot;: &quot;2.12.2&quot;,&quot;paramsBlackList&quot;: &quot;_wt,seeyouagain1722&quot;,&quot;my_activity&quot;: &quot;https://market.m.taobao.com/apps/abs/5/38/my12?psId=58386&amp;pcPsId=58388&quot;, &quot;venueUrl&quot;: &quot;https://1212.taobao.com?wh_weex=true&amp;data_prefetch=true&amp;wx_navbar_transparent=true&quot;, &quot;helpUrl&quot;: &quot;https://consumerservice.taobao.com/online-help&quot;, &quot;validTime&quot;:{&quot;startTime&quot;: 1512057599, &quot;endTime&quot;: 1513094400}, &quot;style&quot;: {&quot;name&quot;: &quot;171212&quot;, &quot;path&quot;: &quot;kg/sidebar-style-171212/0.0.5/&quot; }, &quot;page&quot;:[],&quot;blackList&quot;:[],&quot;navDataId&quot;:{&quot;tceSid&quot;:1182567,&quot;tceVid&quot;:0},&quot;pluginVersion&quot;:{ &quot;cart&quot;:&quot;0.2.0&quot;,&quot;history&quot;:&quot;0.2.0&quot;,&quot;redpaper&quot;:&quot;0.0.8&quot;,&quot;gotop&quot;:&quot;0.2.5&quot;,&quot;help&quot;:&quot;0.2.1&quot;,&quot;ww&quot;:&quot;0.0.3&quot;,&quot;pagenav&quot;:&quot;0.0.27&quot;,&quot;myasset&quot;:&quot;0.0.9&quot;,&quot;my1212&quot;:&quot;0.0.1&quot;,&quot;my1111&quot;:&quot;0.2.2&quot;}}">
@@ -70,9 +111,12 @@
 </li>
 <li class="site-nav-menu site-nav-mytaobao site-nav-multi-menu J_MultiMenu" id="J_SiteNavMytaobao" data-name="mytaobao" data-spm="1997525045">
 <div class="site-nav-menu-hd">
-<a href="" target="_top">
+<a href="" target="_top" id="dd">
 <span>我的淘宝</span>
 </a>
+
+
+
 <span class="site-nav-arrow"><span class="site-nav-icon"></span></span>
 </div>
 <div class="site-nav-menu-bd site-nav-menu-list">
@@ -186,23 +230,30 @@
 <div class="more-label"><span>更多市场</span><b class="theme-bd-t-level2"></b></div>
 <div class="more-content"></div>
 </div>
-<div class="search">
+
+
+<div class="search" data-spm-anchor-id="a217f.8051907.249291.i1.28b63308YXQs53">
 <form action="foo" accept-charset="gbk" class="market-search" method="GET">
 <div class="search-wrap">
-<div class="input-wrap">
+<div class="input-wrap" data-spm-anchor-id="a217f.8051907.249291.i2.28b63308YXQs53">
 <div class="opt">
 <span data-type="item" data-action="//s.taobao.com/list?seller_type=taobao&amp;style=grid" data-allaction="//s.taobao.com/search" data-target="" data-cat="16">宝贝</span>
 <b class="icon"></b>
-
+<div class="opt-drop theme-bd-level2" style="display: none;">
+<ul>
+<li><a href=""><span data-type="shop" data-shop="yes" data-action="//s.taobao.com/search" data-target="//s.taobao.com/search" data-cat="">店铺</span></a></li>
+</ul>
 </div>
-<div class="search-combobox" id="ks-component288" aria-pressed="false"><div class="search-combobox-input-wrap"><input type="text" id="q" class="search-combobox-input" name="q" aria-haspopup="true" aria-combobox="list" role="combobox" autocomplete="off" x-webkit-grammar="builtin:translate" aria-label="请输入搜索文字" tabindex="0"></div></div>
+</div>
+<div class="search-combobox" id="ks-component314" aria-pressed="false"><div class="qw"><input type="text" id="q" class="search-combobox-input" name="q" aria-haspopup="true" aria-combobox="list" role="combobox" autocomplete="off" x-webkit-grammar="builtin:translate" aria-label="请输入搜索文字" tabindex="0"></div></div>
 </div>
 <a class="local no-bg" href="" title="">搜女装</a>
 <a class="global" href="" title="搜全站">搜全站</a>
 </div>
-
 </form>
 </div>
+
+
 </div>
 </div>
 </div>
@@ -277,6 +328,71 @@
 </div>
 </div>
 <script src="//g.alicdn.com/tb-mod/??tb-top/0.0.4/index.js,ems-rgn/0.0.13/index.js"></script>
+	
+	<br/>
+	<div class="container" style="width: 88%;">
+		<div class="row">
+  			<div class="btn-group col-xs-12" style="border: none;">
+  				<a class="btn btn-default" href="../goods/queryCation">综合排序</a>
+  				<a class="btn btn-default" href="../goods/queryCation?status=1">人气</a>
+  				<a class="btn btn-default" href="../goods/queryCation?status=2">销量</a>
+  				<div class="btn-group">
+    				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+    					按价格
+      					<span class="caret"></span>
+   					</button>
+   				 	<ul class="dropdown-menu" role="menu">
+      					<li><a href="../goods/queryCation?status=3">从高到低</a></li>
+      					<li><a href="../goods/queryCation?status=4">从低到高</a></li>
+    				</ul>
+  					</div>
+			</div>
+		</div>
+		<br/>
+		<div class="row">
+			<c:forEach items="${res.datas }" var="g">
+				<div class="col-xs-2">
+				<img alt="" src="${g.goodsImg }" width="160" height="260">
+				<span class="se">￥ ${g.shopPrice }</span>  &nbsp; &nbsp; <span class="xian">${g.marketPrice }</span>
+				<div><a href="">${g.goodsInfo }</a></div>
+				<div><a href="">${g.shop.shopName }</a></div>
+			</div>
+			</c:forEach>
+			
+		</div>
+	
+	
+	
+		<div class="row">
+			<nav aria-label="Page navigation">
+  	<ul class="pagination">
+    	<li>
+      	<a href="../goods/queryCation?sPageNo=1" aria-label="Previous">
+       	 <span aria-hidden="true">&laquo;</span>
+      	</a>
+    	</li>
+    	<c:forEach begin="1" end="${res.pageCount }" varStatus="index">
+			<li ${sPageNo == index.index ? "class='active'":""}><a href="../goods/queryCation?sPageNo=${index.index }">${index.index}</a></li>
+		</c:forEach>
+  
+    <li>
+      <a href="../goods/queryCation?sPageNo=2" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+		</div>
+	
+	
+	</div>
+	
+	
+	
+	
+	
+	
+	
 	
 </body>
 </html>

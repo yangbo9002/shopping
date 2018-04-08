@@ -5,21 +5,36 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.shopping.dao.CartsDao;
-import org.shopping.pojo.Carts;
+import org.shopping.dao.ShopCartsDao;
+import org.shopping.pojo.ShopCarts;
+import org.shopping.service.CartsSerivce;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class CarteSerivceImpl {
+public class CarteSerivceImpl implements CartsSerivce{
 
 	@Resource
 	private CartsDao cd;
 	
-	public List<Carts> selectCarte(String sql){
-		List<Carts> list = cd.select(sql);
+	@Resource
+	private ShopCartsDao scd;
+
+	@Override
+	public List<ShopCarts> getCarts(String sql) {
+          List<ShopCarts> list = cd.getCarts(sql);
 		
-		return list;
+		  return list;
 	}
+
+	@Override
+	public void deleteGood(Integer goodsId) {
+		scd.delete(goodsId);
+		
+	}
+	
+	
+	
 	
 }

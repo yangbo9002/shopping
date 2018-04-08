@@ -1,12 +1,15 @@
 package org.shopping.web;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.shopping.pojo.Goods;
 import org.shopping.service.GoodsService;
+import org.shopping.service.PageService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -16,6 +19,8 @@ public class GoodsController {
 	
 	@Resource
 	private GoodsService gs;
+	@Resource
+	private PageService<Goods> ps;
 	
 	/**
 	 * 2018年3月20日 上午9:13:32 杨波
@@ -23,12 +28,20 @@ public class GoodsController {
 	 * 查询所有商品
 	 */
 	@RequestMapping("/query")
-	@ResponseBody
-	public List<?> fun(){
-		String sql = "select * from goods;";
-		List<?> list = gs.select(sql);
-		return list;
+	public String fun(ModelMap map){
+		String sql = "select * from goods";
+		List<Goods> list = gs.select(sql);
+		List<?> cationList = gs.selectCation("SELECT * from classification where parentId is null;");
+		map.put("classification", cationList);
+		map.put("goods", list);
+		return "index";
+		
 	}
+	
+	
+	
+	
+	
 	
 	/**
 	 * 2018年3月20日 上午9:15:27 杨波
@@ -60,10 +73,43 @@ public class GoodsController {
 	}
 	
 	@RequestMapping("/queryCation")
-	@ResponseBody
-	public List<?> fun4(){
-		String sql = "select  * from classification";
-		List<?> list = gs.selectCation(sql);
-		return list;
+	public String  fun4(ModelMap map,String sPageNo,String status){
+		if (sPageNo == null || sPageNo.trim().length() == 0) {
+            sPageNo = "1";
+        }
+        Integer pageNo = null;
+        try {
+            pageNo = Integer.parseInt(sPageNo);
+        } catch (NumberFormatException e) {
+            System.out.println("页面异常");
+        }
+        
+
+		String querySql = "select count(*) from Goods";
+		String sql = "select * from goods";
+        
+        
+        if(status != null && !status.equals("")){
+        	if(status.equals("1")){
+        		sql += " order by visitNum desc";//按人气排序
+        	} else if(status.equals("2")){
+        		sql += " order by saleNum desc";//按销量排序
+        	} else if(status.equals("3")){
+        		sql += " order by shopPrice desc";//按价格从高到低排序
+        	} else if(status.equals("4")){
+        		sql += " order by shopPrice asc";//按价格从低到高排序
+        	}
+        }
+        
+        
+		Map<String, Object> res = ps.query(pageNo, querySql, sql);
+            //往res中 添加当前的页序号
+            res.put("currentPage", pageNo);
+          
+		List<?> cationList = gs.selectCation("SELECT * from classification where parentId is null;");
+		map.put("classification", cationList);
+		map.put("res", res);
+		map.put("sPageNo", sPageNo);
+		return "classification";
 	}
 }

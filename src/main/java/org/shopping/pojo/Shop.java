@@ -51,6 +51,11 @@ public class Shop {//µÍ∆Ã±Ì
 		public void setShopText(String shopText) {
 			this.shopText = shopText;
 		}
+		@Override
+		public String toString() {
+			return "Shop [shopId=" + shopId + ", shopName=" + shopName + ", shopLogo=" + shopLogo + ", shopText="
+					+ shopText + ", user=" + user + "]";
+		}
 		
 		
 		

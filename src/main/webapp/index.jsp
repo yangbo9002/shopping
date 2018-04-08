@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:forward page="selectCarte"></jsp:forward>
+<jsp:forward page="goods/query"></jsp:forward>
 </body>
 </html>
