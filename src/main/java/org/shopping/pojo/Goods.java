@@ -161,5 +161,14 @@ public class Goods {//商品信息表
 	public void setIsBoard(String isBoard) {
 		this.isBoard = isBoard;
 	}
+	@Override
+	public String toString() {
+		return "Goods [goodsId=" + goodsId + ", goodsName=" + goodsName + ", goodsImg=" + goodsImg + ", marketPrice="
+				+ marketPrice + ", shopPrice=" + shopPrice + ", goodsStock=" + goodsStock + ", goodsTips=" + goodsTips
+				+ ", isNew=" + isNew + ", isBoard=" + isBoard + ", brand=" + brand + ", goodsInfo=" + goodsInfo
+				+ ", saleNum=" + saleNum + ", visitNum=" + visitNum + ", shop=" + shop + ", cation=" + cation
+				+ ", goodAttr=" + goodAttr + ", image=" + image + ", createTime=" + createTime + "]";
+	}
+	
 	
 }

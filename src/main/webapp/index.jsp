@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="pageSelectCount">你好</a>
+<jsp:forward page="goods/query"></jsp:forward>
 </body>
 </html>
