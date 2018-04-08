@@ -113,7 +113,7 @@
 </li>
 <li class="site-nav-menu site-nav-cart site-nav-menu-empty site-nav-multi-menu J_MultiMenu mini-cart menu" id="J_MiniCart" data-name="cart" data-spm="1997525049">
 <div class="site-nav-menu-hd">
-<a href="" target="_top" id="mc-menu-hd">
+<a href="jsp/carts.jsp" target="_top" id="mc-menu-hd">
 <span class="site-nav-icon site-nav-icon-highlight"></span>
 <span>购物车</span>
 <strong class="h" id="J_MiniCartNum">0</strong>

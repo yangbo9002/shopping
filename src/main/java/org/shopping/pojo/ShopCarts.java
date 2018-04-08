@@ -9,7 +9,7 @@ public class ShopCarts {
 	private Integer shopId;//店铺ID  
 	private String shopName;//店铺名称
 	private String goodsImg;//商品图片 
-	private String goodsName;//商品名称
+	private String goodsInfo;//商品名称
 	private Double shopPrice;//商品价格
 	private Double shopPriceNum;//商品总价格
 	private Integer cartNum;//商品数量
@@ -18,52 +18,6 @@ public class ShopCarts {
 	private String attrName;//商品属性名称
 	private String attrVal;//商品属性值
 	private Integer cartId;//购物车ID
-	
-	
-	
-	
-	
-	
-	public Integer getGoodsId() {
-		return goodsId;
-	}
-	public void setGoodsId(Integer goodsId) {
-		this.goodsId = goodsId;
-	}
-	public Double getShopPriceNum() {
-		return cartNum*shopPrice;
-	}
-	public void setShopPriceNum(Double shopPriceNum) {
-		this.shopPriceNum = shopPriceNum;
-	}
-	public Date getCreateTime() {
-		return createTime;
-	}
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
-	public Integer getCartNum() {
-		return cartNum;
-	}
-	public void setCartNum(Integer cartNum) {
-		this.cartNum = cartNum;
-	}
-	
-	public String getAttrName() {
-		return attrName;
-	}
-	public void setAttrName(String attrName) {
-		this.attrName = attrName;
-	}
-	public String getAttrVal() {
-		return attrVal;
-	}
-	public void setAttrVal(String attrVal) {
-		this.attrVal = attrVal;
-	}
-	
-	
-	
 	public Integer getShopId() {
 		return shopId;
 	}
@@ -82,11 +36,11 @@ public class ShopCarts {
 	public void setGoodsImg(String goodsImg) {
 		this.goodsImg = goodsImg;
 	}
-	public String getGoodsName() {
-		return goodsName;
+	public String getGoodsInfo() {
+		return goodsInfo;
 	}
-	public void setGoodsName(String goodsName) {
-		this.goodsName = goodsName;
+	public void setGoodsInfo(String goodsInfo) {
+		this.goodsInfo = goodsInfo;
 	}
 	public Double getShopPrice() {
 		return shopPrice;
@@ -94,7 +48,42 @@ public class ShopCarts {
 	public void setShopPrice(Double shopPrice) {
 		this.shopPrice = shopPrice;
 	}
-	
+	public Double getShopPriceNum() {
+		return shopPriceNum;
+	}
+	public void setShopPriceNum(Double shopPriceNum) {
+		this.shopPriceNum = shopPriceNum;
+	}
+	public Integer getCartNum() {
+		return cartNum;
+	}
+	public void setCartNum(Integer cartNum) {
+		this.cartNum = cartNum;
+	}
+	public Integer getGoodsId() {
+		return goodsId;
+	}
+	public void setGoodsId(Integer goodsId) {
+		this.goodsId = goodsId;
+	}
+	public Date getCreateTime() {
+		return createTime;
+	}
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+	public String getAttrName() {
+		return attrName;
+	}
+	public void setAttrName(String attrName) {
+		this.attrName = attrName;
+	}
+	public String getAttrVal() {
+		return attrVal;
+	}
+	public void setAttrVal(String attrVal) {
+		this.attrVal = attrVal;
+	}
 	public Integer getCartId() {
 		return cartId;
 	}
@@ -103,6 +92,9 @@ public class ShopCarts {
 	}
 	
 	
+	
+	
+
 	
 	
 }

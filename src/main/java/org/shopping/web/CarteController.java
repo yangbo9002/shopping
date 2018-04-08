@@ -29,7 +29,7 @@ public class CarteController {
 	@RequestMapping("/selectCarte")
 	@ResponseBody
 	public List<List<ShopCarts>> getcarys(Integer usersId){
-		String sql = "select s.shopId,g.goodsId,g.goodsImg,g.goodsName,g.createTime,a.attrName,att.attrVal,s.shopName,c.cartNum,c.cartId,g.shopPrice  "
+		String sql = "select s.shopId,g.goodsId,g.goodsImg,g.goodsInfo,g.createTime,a.attrName,att.attrVal,s.shopName,c.cartNum,c.cartId,g.shopPrice  "
 				+ " from carts c,goods g,attribures a,attriburesval att,shop s "
 				+ " where c.cartId=g.goodsId and a.attrId=att.valId and s.shopId=g.shopId and c.usersId="+usersId+" order by createTime desc";
 		/*String sql = "select * from users where usersId="+usersId;*/
@@ -61,7 +61,7 @@ public class CarteController {
 					sc.setCreateTime(carts.get(j).getCreateTime());//添加时间
 					sc.setGoodsImg(carts.get(j).getGoodsImg());//商品图片
 					sc.setShopPrice(carts.get(j).getShopPrice());//商品单价
-					sc.setGoodsName(carts.get(j).getGoodsName());//商品名称
+					sc.setGoodsInfo(carts.get(j).getGoodsInfo());//商品名称
 					
 					arrayList3.add(sc);
 					
