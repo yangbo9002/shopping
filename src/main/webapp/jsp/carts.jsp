@@ -9,11 +9,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-        <script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-3.2.0.min.js"></script>
  		<link rel="stylesheet" href="${pageContext.request.contextPath }/js/bootstarp-3.3.7/css/bootstrap.min.css" />    		
-		<script type="text/javascript" src="${pageContext.request.contextPath }/js/bootstarp-3.3.7/js/bootstrap.min.js" ></script>		
-		<script type="text/javascript" src="${pageContext.request.contextPath }/js/bootstarp-table-1.11.1/bootstrap-table.min.js" ></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath }/js/bootstarp-table-1.11.1/bootstrap-table-zh-CN.min.js" ></script>      
+		<script type="text/javascript" src="${pageContext.request.contextPath }/js/bootstarp-3.3.7/js/bootstrap.min.js" ></script>		   
 		
        
   <style type="text/css">
@@ -80,7 +78,10 @@
     	color: #FF5200;
     } 
     
-      
+      .sh{
+			width: 40px;
+			height: 60px;
+		}
  </style>
  
  
@@ -98,7 +99,7 @@
 					
 				    $("#dd"+i).append("</br><div class='row td-inner'><div class='col-lg-1 col-md-1 '><input type='checkbox'"
 						 +" name='cartgoodId_checkbox' class='divs' id='cartgoodId' value='"+data[i][j].goodsId+"'/></div><div class='col-lg-5 col-md-5'>"
-						 +"<img src='"+data[i][j].goodsImg+"'width=40 height=30/>&nbsp;&nbsp;"+data[i][j].goodsName+"&nbsp;&nbsp;"+data[i][j].attrName+"&nbsp;&nbsp;"+data[i][j].attrVal+"</div>"
+						 +"<span class='sh'><img src='"+data[i][j].goodsImg+"'width='40' height='60'/></span>&nbsp;&nbsp;<span class='sh'>"+data[i][j].goodsInfo+"</span>&nbsp;&nbsp;"+data[i][j].attrName+"&nbsp;&nbsp;"+data[i][j].attrVal+"</div>"
 				         +"<div class='col-lg-1 col-md-1'>￥"+data[i][j].shopPrice+"</div>"
 				         +"<div class='col-lg-2 col-md-2'><div><input  type='button'value='-' disabled='disabled' id='bu-'><input type='text' id='inputnum' readonly='readonly' class='inputw' value='"+data[i][j].cartNum+"'/><input type='button'value='+' id='bu+' onclick='butt()'></div></div>"
 				         +"<div class='col-lg-1 col-md-1'>"+data[i][j].shopPriceNum+"</div>"
@@ -161,7 +162,8 @@ function ckAll(){
        
 </head>
 <body>
-<div class="container"><div>
+<div class="container">
+<div>
 	<div class="td-inner">&nbsp;</div>
 	<div class="row">
 		<div class="col-md-1"></div>
@@ -180,8 +182,8 @@ function ckAll(){
 	
 <div id="d1" class="container">
 		<div class="row">
-		<div class="col-lg-1 col-md-1" id="d1"></div>				
-		<div class="col-lg-10 col-md-10 td-inner" id="d2">		 
+					
+		<div class="col-lg-12 col-md-12 td-inner" id="d2">		 
 		<div class="row">
 		<div class="col-lg-2 col-md-2" id="w1">&nbsp;&nbsp;&nbsp;<input type="checkbox" id="chackid" onclick="ckAll()">全选</div>
 		<div class="col-lg-4 col-md-4" id="w2">商品信息</div>
@@ -216,10 +218,23 @@ function ckAll(){
 
    		 	
  </div>
-</div>
-<div class="td-inner">&nbsp;</div><div class="td-inner">&nbsp;
-</div><div class="td-inner">&nbsp;</div>
 
-<div class="td-inner">&nbsp;</div><div class="td-inner">&nbsp;</div>
+</div>
+<div class="td-inner">&nbsp;</div>
+
+<div class="td-inner">&nbsp;</div>
+
+<div class="td-inner">&nbsp;</div>
+
+
+
+
+
+
+
+
+
+<div class="td-inner">&nbsp;</div>
+<div class="td-inner">&nbsp;</div>
 </body>
 </html>
