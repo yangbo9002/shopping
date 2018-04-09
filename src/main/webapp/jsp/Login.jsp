@@ -53,8 +53,8 @@
 				</div>
 			</div>
 		</div>
-		<script type="text/javascript" src="js/jquery.min.js" ></script>
-		<script type="text/javascript" src="js/common.js" ></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.min.js" ></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath }/js/common.js" ></script>
 		<div style="text-align:center;">
 
 </div>

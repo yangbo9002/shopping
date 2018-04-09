@@ -12,14 +12,12 @@ public interface UsersDao extends BaseDao<Users>{
 	
 	
 	
-<<<<<<< HEAD
+
 
 List<Users> queryell(String sql);	
 	
 Users selectone(String sql);
 
-=======
->>>>>>> refs/remotes/origin/master
 
 }
  

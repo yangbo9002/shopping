@@ -56,6 +56,7 @@
 </head>
 <body>
 
+
 <div data-spm="620129" data-moduleid="80582" data-name="tb-top" data-guid="620129" id="guid-620129" data-scene-id="0" data-scene-version="" data-hidden="" data-gitgroup="tb-mod" data-ext="" class="tb-top J_Module" tms="tb-top/0.0.4" tms-datakey="0"><link rel="stylesheet" href="//g.alicdn.com/??kg/global-util/1.0.6/index-min.css,kg/tb-nav/2.4.2/index-min.css">
 <style>.footer a {display:inline !important;}</style>
 <div class="site-nav site-nav-status-logout" id="J_SiteNav" data-component-config="{ &quot;cart&quot;: &quot;0.0.6&quot;,&quot;message&quot;: &quot;3.4.6&quot;,&quot;umpp&quot;: &quot;1.5.4&quot;,&quot;mini-login&quot;: &quot;6.3.8&quot;,&quot;tb-ie-updater&quot;: &quot;0.0.4&quot;,&quot;tbar&quot;: &quot;2.1.0&quot;,&quot;tb-footer&quot;: &quot;1.1.6&quot;,&quot;sidebar&quot;: &quot;1.0.10&quot; }" data-tbar="{ &quot;show&quot;:true, &quot;miniCart&quot;: &quot;2.12.2&quot;,&quot;paramsBlackList&quot;: &quot;_wt,seeyouagain1722&quot;,&quot;my_activity&quot;: &quot;https://market.m.taobao.com/apps/abs/5/38/my12?psId=58386&amp;pcPsId=58388&quot;, &quot;venueUrl&quot;: &quot;https://1212.taobao.com?wh_weex=true&amp;data_prefetch=true&amp;wx_navbar_transparent=true&quot;, &quot;helpUrl&quot;: &quot;https://consumerservice.taobao.com/online-help&quot;, &quot;validTime&quot;:{&quot;startTime&quot;: 1512057599, &quot;endTime&quot;: 1513094400}, &quot;style&quot;: {&quot;name&quot;: &quot;171212&quot;, &quot;path&quot;: &quot;kg/sidebar-style-171212/0.0.5/&quot; }, &quot;page&quot;:[],&quot;blackList&quot;:[],&quot;navDataId&quot;:{&quot;tceSid&quot;:1182567,&quot;tceVid&quot;:0},&quot;pluginVersion&quot;:{ &quot;cart&quot;:&quot;0.2.0&quot;,&quot;history&quot;:&quot;0.2.0&quot;,&quot;redpaper&quot;:&quot;0.0.8&quot;,&quot;gotop&quot;:&quot;0.2.5&quot;,&quot;help&quot;:&quot;0.2.1&quot;,&quot;ww&quot;:&quot;0.0.3&quot;,&quot;pagenav&quot;:&quot;0.0.27&quot;,&quot;myasset&quot;:&quot;0.0.9&quot;,&quot;my1212&quot;:&quot;0.0.1&quot;,&quot;my1111&quot;:&quot;0.2.2&quot;}}">
@@ -64,7 +65,17 @@
 <li class="site-nav-menu site-nav-login" id="J_SiteNavLogin" data-name="login" data-spm="754894437"><div class="site-nav-menu-hd">  <div class="site-nav-sign">    
 
 
-<a href="" target="_top" class="h">亲，请登录</a>    <a href="" target="_top">免费注册</a>  </div>  <div class="site-nav-user">    <a href="" target="_top" class="site-nav-login-info-nick "></a>    <span class="site-nav-arrow"><span class="site-nav-icon"></span></span>  </div></div><div class="site-nav-menu-bd" id="J_SiteNavLoginPanel"></div></li>
+<c:if test="${empty user }">
+<a href="${pageContext.request.contextPath }/jsp/Login.jsp" target="_top" class="h">亲，请登录</a>    <a href="" target="_top">免费注册</a> 
+</c:if>
+
+<c:if test="${!empty user }">
+<span>${user.userName }</span>
+</c:if>
+
+ </div>  
+ 
+ <div class="site-nav-user">    <a href="" target="_top" class="site-nav-login-info-nick "></a>    <span class="site-nav-arrow"><span class="site-nav-icon"></span></span>  </div></div><div class="site-nav-menu-bd" id="J_SiteNavLoginPanel"></div></li>
 
 
 
@@ -104,31 +115,28 @@
 <ul class="site-nav-bd-r" id="J_SiteNavBdR" data-spm-ab="2">
 <li class="site-nav-menu site-nav-home" id="J_SiteNavHome" data-name="home" data-spm="1581860521">
 <div class="site-nav-menu-hd">
-<a href="" target="_top">
+<a href="${pageContext.request.contextPath }/index.jsp" target="_top">
 <span>淘宝网首页</span>
 </a>
 </div>
 </li>
 <li class="site-nav-menu site-nav-mytaobao site-nav-multi-menu J_MultiMenu" id="J_SiteNavMytaobao" data-name="mytaobao" data-spm="1997525045">
 <div class="site-nav-menu-hd">
-<a href="" target="_top" id="dd">
-<span>我的淘宝</span>
+<a href="${pageContext.request.contextPath }/jsp/orders.jsp" target="_top">
+<span>我的订单</span>
 </a>
-
-
-
 <span class="site-nav-arrow"><span class="site-nav-icon"></span></span>
 </div>
 <div class="site-nav-menu-bd site-nav-menu-list">
 <div class="site-nav-menu-bd-panel menu-bd-panel">
 <a href="" target="_top">已买到的宝贝</a>
-<a href="" target="_top">我的足迹</a>
+<a href="jsp/order.jsp" target="_top">我的订单</a>
 </div>
 </div>
 </li>
 <li class="site-nav-menu site-nav-cart site-nav-menu-empty site-nav-multi-menu J_MultiMenu mini-cart menu" id="J_MiniCart" data-name="cart" data-spm="1997525049">
 <div class="site-nav-menu-hd">
-<a href="" target="_top" id="mc-menu-hd">
+<a href="${pageContext.request.contextPath }/jsp/carts.jsp" target="_top" id="mc-menu-hd">
 <span class="site-nav-icon site-nav-icon-highlight"></span>
 <span>购物车</span>
 <strong class="h" id="J_MiniCartNum">0</strong>
@@ -156,7 +164,7 @@
 </li>
 <li class="site-nav-menu site-nav-catalog" id="w" data-name="catalog" data-spm="1997563209">
 <div class="site-nav-menu-hd">
-<a href="" target="_top">
+<a href="${pageContext.request.contextPath }/goods/queryCation" target="_top">
 <span>商品分类</span>
 </a>
 </div>
@@ -195,14 +203,7 @@
 </div>
 </div>
 </li>
-<li class="site-nav-menu site-nav-sitemap site-nav-multi-menu J_MultiMenu" id="J_SiteNavSitemap" data-name="sitemap" data-spm="1997525077">
-<div class="site-nav-men                        u-hd">
-<a href="https://www.taobao.com/tbhome/page/sitemap" target="_top">
-<span class="site-nav-icon site-nav-icon-highlight"></span>
-<span>网站导航</span>
-</a>
-<span class="site-nav-arrow"><span class="site-nav-icon"></span></span>
-</div>
+
 </ul>
 </div>
 </div>
@@ -215,6 +216,8 @@
 <style>
   .skin-default .market-nav-ext{border-color:#eb5386}.skin-default .market-nav-ext dt{color:#f56293}.skin-default .market-nav-ext dt a{color:#f56293}.skin-default .market-nav-ext .ext-hot{color:#f56293}.skin-default .nav .sm-cat-list .fix-box{background-color:#f56293}.skin-default .nav .sm-cat-list.current .box-fixed .current{background-color:#f56293}.skin-default .nav .sm-cat-list .sm-cat-list-main dl{border-color:#f56293}.skin-default .nav .sm-cat-list .sm-cat-list-main dl:hover{border-color:#eb5386;background-color:#eb5386}.skin-default .nav .sm-cat-list .sm-cat-list-main .hover{border-color:#eb5386}.skin-default .nav .sm-cat-list .sm-cat-list-main .hover:hover{border-color:#eb5386;background-color:#FFF}.skin-default .nav .sm-cat-list .sm-cat-list-main .hover .current{background-color:#FFF}.skin-default .nav .sm-cat-list .sm-cat-list-main .hover .current a{color:#f56293}.skin-default .nav .sm-cat-list .sm-cat-list-main .hover dt a{color:#f56293}.skin-default .nav .sm-cat-list .sm-cat-list-main .hover dt .cat-title{color:#f56293}.skin-default .nav .sm-cat-list .sm-cat-list-main .current a{color:#eb5386}.skin-default .nav .sm-item-list{border-bottom-color:#f56293}.skin-default .nav .search-wrap a.local,.skin-default .nav .search-wrap a.local:hover{background:#f56293}.skin-default .nav .main-list li a:hover{_background:#f56293}.skin-default .nav .main-list li a.current,.skin-default .nav .main-list li a.hl{background:#f56293}.skin-default .nav .main-list li b{background:#f56293}.skin-default .nav .opt-drop{border-color:#f56293}.skin-default .nav .input-wrap.active,.skin-default .nav .input-wrap.hl{border-color:#f56293}.skin-default .nav .menu-button a.current,.skin-default .nav .menu-button b{background:#f56293}.skin-default .nav .menu-button a:hover{_background:#f56293}
 </style>
+
+
 
 
 
@@ -376,7 +379,7 @@
 		</c:forEach>
   
     <li>
-      <a href="../goods/queryCation?sPageNo=2" aria-label="Next">
+      <a href="../goods/queryCation?sPageNo=${res.pageCount }" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
       </a>
     </li>

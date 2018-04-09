@@ -7,11 +7,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 	<script src='//g.alicdn.com/??kissy/k/6.2.4/seed-min.js,tbc/global/0.0.8/index-min.js,tms/tb-init/0.0.39/index-min.js'></script>
- <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />  
-		<script type="text/javascript" src="js/jquery-3.2.0.min.js" ></script>
-		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js" ></script>
-	<link rel="stylesheet" href="css/yemei.css" /> 
-	<link rel="stylesheet" href="css/yang.css" /> 
+ <link rel="stylesheet" href="${pageContext.request.contextPath }/bootstrap/css/bootstrap.min.css" />  
+		<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-3.2.0.min.js" ></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath }/bootstrap/js/bootstrap.min.js" ></script>
+	<link rel="stylesheet" href="${pageContext.request.contextPath }/css/yemei.css" /> 
+	<link rel="stylesheet" href="${pageContext.request.contextPath }/css/yang.css" /> 
 	
 	<style type="text/css">
 		.tu{
@@ -51,8 +51,17 @@
 <ul class="site-nav-bd-l" id="J_SiteNavBdL" data-spm-ab="1">
 <li class="site-nav-menu site-nav-login" id="J_SiteNavLogin" data-name="login" data-spm="754894437"><div class="site-nav-menu-hd">  <div class="site-nav-sign">    
 
+<c:if test="${empty user }">
+<a href="${pageContext.request.contextPath }/jsp/Login.jsp" target="_top" class="h">亲，请登录</a>    <a href="" target="_top">免费注册</a> 
+</c:if>
 
-<a href="" target="_top" class="h">亲，请登录</a>    <a href="" target="_top">免费注册</a>  </div>  <div class="site-nav-user">    <a href="" target="_top" class="site-nav-login-info-nick "></a>    <span class="site-nav-arrow"><span class="site-nav-icon"></span></span>  </div></div><div class="site-nav-menu-bd" id="J_SiteNavLoginPanel"></div></li>
+<c:if test="${!empty user }">
+<span>${user.userName }</span>
+</c:if>
+
+ </div>  
+ 
+ <div class="site-nav-user">    <a href="" target="_top" class="site-nav-login-info-nick "></a>    <span class="site-nav-arrow"><span class="site-nav-icon"></span></span>  </div></div><div class="site-nav-menu-bd" id="J_SiteNavLoginPanel"></div></li>
 
 
 
@@ -92,28 +101,28 @@
 <ul class="site-nav-bd-r" id="J_SiteNavBdR" data-spm-ab="2">
 <li class="site-nav-menu site-nav-home" id="J_SiteNavHome" data-name="home" data-spm="1581860521">
 <div class="site-nav-menu-hd">
-<a href="" target="_top">
+<a href="${pageContext.request.contextPath }/index.jsp" target="_top">
 <span>淘宝网首页</span>
 </a>
 </div>
 </li>
 <li class="site-nav-menu site-nav-mytaobao site-nav-multi-menu J_MultiMenu" id="J_SiteNavMytaobao" data-name="mytaobao" data-spm="1997525045">
 <div class="site-nav-menu-hd">
-<a href="" target="_top">
-<span>我的淘宝</span>
+<a href="${pageContext.request.contextPath }/jsp/orders.jsp" target="_top">
+<span>我的订单</span>
 </a>
 <span class="site-nav-arrow"><span class="site-nav-icon"></span></span>
 </div>
 <div class="site-nav-menu-bd site-nav-menu-list">
 <div class="site-nav-menu-bd-panel menu-bd-panel">
 <a href="" target="_top">已买到的宝贝</a>
-<a href="" target="_top">我的足迹</a>
+<a href="jsp/order.jsp" target="_top">我的订单</a>
 </div>
 </div>
 </li>
 <li class="site-nav-menu site-nav-cart site-nav-menu-empty site-nav-multi-menu J_MultiMenu mini-cart menu" id="J_MiniCart" data-name="cart" data-spm="1997525049">
 <div class="site-nav-menu-hd">
-<a href="jsp/carts.jsp" target="_top" id="mc-menu-hd">
+<a href="${pageContext.request.contextPath }/jsp/carts.jsp" target="_top" id="mc-menu-hd">
 <span class="site-nav-icon site-nav-icon-highlight"></span>
 <span>购物车</span>
 <strong class="h" id="J_MiniCartNum">0</strong>
@@ -141,7 +150,7 @@
 </li>
 <li class="site-nav-menu site-nav-catalog" id="w" data-name="catalog" data-spm="1997563209">
 <div class="site-nav-menu-hd">
-<a href="goods/queryCation" target="_top">
+<a href="${pageContext.request.contextPath }/goods/queryCation" target="_top">
 <span>商品分类</span>
 </a>
 </div>
@@ -180,14 +189,7 @@
 </div>
 </div>
 </li>
-<li class="site-nav-menu site-nav-sitemap site-nav-multi-menu J_MultiMenu" id="J_SiteNavSitemap" data-name="sitemap" data-spm="1997525077">
-<div class="site-nav-men                        u-hd">
-<a href="https://www.taobao.com/tbhome/page/sitemap" target="_top">
-<span class="site-nav-icon site-nav-icon-highlight"></span>
-<span>网站导航</span>
-</a>
-<span class="site-nav-arrow"><span class="site-nav-icon"></span></span>
-</div>
+
 </ul>
 </div>
 </div>
@@ -248,7 +250,7 @@
 <div class="market-wrap list-wrap">
 <ul class="main-list hl-list">
 <li>
-<a href="" class="list-index" data-tag="index">首页
+<a href="#" class="list-index" data-tag="index">首页
 <span class="icon">&#x3473;</span>
 </a>
 </li>
@@ -275,7 +277,7 @@
 
             <span class="cat-title 1st" data-tag="">
               
-              <a href="">${cation.cname }</a>
+              <a href="goods/queryCation?cid=${cation.cid }">${cation.cname }</a>
               
             </span>
             <span class="lala">&#xe60e;</span>
@@ -284,7 +286,7 @@
             <c:forEach items="${cation.cation }" var="ca">
             	<dd class="cat-title 2rd" data-tag="">
             
-            <a href="">${ca.cname }</a></dd>
+            <a href="goods/queryCation?cid=${cation.cid }">${ca.cname }</a></dd>
             </c:forEach>
             
             

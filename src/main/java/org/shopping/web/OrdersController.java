@@ -26,6 +26,8 @@ public class OrdersController {
 			sql = "select * from ordergoods";
 		} else if(key.equals("1")){
 			sql = "select og.* from ordergoods og,orders os,goods go where og.goodsId=go.goodsId and os.orderId=og.ordersId and os.isPay=0;";
+		} else if(key.equals("2")){
+			sql = "select og.* from ordergoods og,orders os,goods go where og.goodsId=go.goodsId and os.orderId=og.ordersId and os.orderStatus=0;";
 		}
 		List<OrderGoods> od = os.select(sql);
 		/*map.put("od", od);

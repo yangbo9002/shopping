@@ -158,7 +158,25 @@
 			<version>2.0</version>
 			<scope>provided</scope>
 		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
+<dependency>
+    <groupId>commons-fileupload</groupId>
+    <artifactId>commons-fileupload</artifactId>
+</dependency>
+		
+		
+		
 	</dependencies>
   
   
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>commons-fileupload</groupId>
+				<artifactId>commons-fileupload</artifactId>
+				<version>1.0</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 </project>

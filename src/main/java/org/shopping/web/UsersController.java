@@ -3,6 +3,9 @@ package org.shopping.web;
 
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.shopping.pojo.Users;
 import org.shopping.service.UsersService;
@@ -21,14 +24,17 @@ public class UsersController {
 private UsersService es;
 
 @RequestMapping("/login")
-public String login(String loginName,String loginPwd){//µÇÂ¼
+public String login(String loginName,String loginPwd,HttpServletRequest request,HttpServletResponse re){//µÇÂ¼
 	String result="";
 
 	System.out.println(loginName);
 	Users users =es.selectOne(loginName,loginPwd);
 	
+	HttpSession session = request.getSession();
+	
 	if (users!=null&&loginName!=null&&!loginName.equals("")&&loginPwd!=null&&!loginPwd.equals("")) {
-		result="aa";
+		session.setAttribute("user", users);
+		result="../index";
 	} else {
 		result="bb";
 	} 
