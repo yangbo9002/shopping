@@ -1,6 +1,6 @@
 package org.shopping.web;
 
-import java.util.List;
+
 
 import javax.annotation.Resource;
 
@@ -10,18 +10,34 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+
+
+
 @Controller
-@RequestMapping("/users")
+@RequestMapping("user")
 public class UsersController {
 
-	@Resource
-	private UsersService us;
+@Resource	
+private UsersService es;
+
+@RequestMapping("/login")
+public String login(String loginName,String loginPwd){//µÇÂ¼
+	String result="";
+
+	System.out.println(loginName);
+	Users users =es.selectOne(loginName,loginPwd);
 	
-	@RequestMapping("/query")
-	@ResponseBody
-	public List<Users> fun(){
-		String sql = "select * from users;";
-		List<Users> list = us.select(sql);
-		return list;
-	}
+	if (users!=null&&loginName!=null&&!loginName.equals("")&&loginPwd!=null&&!loginPwd.equals("")) {
+		result="aa";
+	} else {
+		result="bb";
+	} 
+	return result;
 }
+@RequestMapping("/zhuc")
+public String zhuce(Users users){//×¢²á
+	es.addUsers(users);
+	return "Login";
+}
+}
+

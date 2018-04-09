@@ -42,7 +42,7 @@ public class AddressController {
 	 * @author Administrator
 	 *添加收货地址
 	 */
-	@RequestMapping("/insertAddress")
+	@RequestMapping("/insertAddres小儿，3")
 	public String fn3(Address address){
 		as.insertAddress(address);
 		return "redirect:selectAddress";

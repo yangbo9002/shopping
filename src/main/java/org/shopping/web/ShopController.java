@@ -29,7 +29,7 @@ public class ShopController {
 	@RequestMapping("/GoodId")
 	//通过当前商品ID查询商品所在店铺信息
 	public List<Goods> shopalls(Integer goodsId){
-		String sql="select * from goods where shopId=(select shopId.shopId from Goods where goodsId="+goodsId+")";
+		String sql="select * from goods where shopId=(select sho	+pId.shopId from Goods where goodsId="+goodsId+")";
 		List<Goods> list = ss.selects(sql);
 		return list;
 	}
