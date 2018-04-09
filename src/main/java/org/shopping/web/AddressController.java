@@ -49,10 +49,10 @@ public class AddressController {
 	}
 	
 	@RequestMapping("/selectAddressId")
-	public String fn4(Integer addressId,ModelMap map){
+	@ResponseBody
+	public Address fn4(Integer addressId){
 		Address address=as.selectAddressAid(addressId);
-		map.put("address", address);
-		return "updateAddress";
+		return address;
 	}
 	
 	@RequestMapping("/updateAddress")
