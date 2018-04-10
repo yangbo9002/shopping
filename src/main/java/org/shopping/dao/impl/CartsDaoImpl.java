@@ -10,20 +10,21 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.transform.Transformers;
 import org.shopping.dao.CartsDao;
+import org.shopping.pojo.Carts;
 import org.shopping.pojo.ShopCarts;
 import org.springframework.stereotype.Repository;
 
 
 @Repository
-public class CartsDaoImpl extends BaseDaoImpl<ShopCarts> implements CartsDao{
+public class CartsDaoImpl extends BaseDaoImpl<Carts> implements CartsDao{
 	
 	
              
 	@Resource
 	private SessionFactory sf;
-	
+	/*
 	@Override
-	public List<ShopCarts> getCarts(String sql) {//用于自己封装实体类
+	public List<Carts> getCarts(String sql) {//用于自己封装实体类
 		Session session = sf.getCurrentSession();
 		SQLQuery sq = session.createSQLQuery(sql);
 		sq.setResultTransformer(Transformers.aliasToBean(ShopCarts.class));
@@ -38,7 +39,14 @@ public class CartsDaoImpl extends BaseDaoImpl<ShopCarts> implements CartsDao{
 		List<Object> list = sq.list();
 		return list;
 	}
-	
+	*/
+
+	@Override
+	public void update(String sql) {
+		Session session = sf.getCurrentSession();
+		SQLQuery sq = session.createSQLQuery(sql);
+		sq.executeUpdate();
+	}
 	
 
 }

@@ -6,12 +6,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel = "stylesheet" href="js/bootstrap/css/bootstrap.min.css">
-   <script type="text/javascript" src="js/jquery-3.0.0.js"> </script>
-   <script type ="text/javascript" src="js/bootstrap/js/bootstrap.min.js"></script>
-   <link rel="stylesheet"  href="js/bootstrap-table/bootstrap-table.min.css">
-   <script type ="text/javascript" src = "js/bootstrap-table/bootstrap-table.min.js"></script>
-   <script type = "text/javascript" src= "js/bootstrap-table/bootstrap-table-zh-CN.min.js"></script>
+<link rel = "stylesheet" href="${pageContext.request.contextPath }/js/bootstrap/css/bootstrap.min.css">
+   <script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-3.0.0.js"> </script>
+   <script type ="text/javascript" src="${pageContext.request.contextPath }/js/bootstrap/js/bootstrap.min.js"></script>
+   <link rel="stylesheet"  href="${pageContext.request.contextPath }/js/bootstrap-table/bootstrap-table.min.css">
+   <script type ="text/javascript" src = "${pageContext.request.contextPath }/js/bootstrap-table/bootstrap-table.min.js"></script>
+   <script type = "text/javascript" src= "${pageContext.request.contextPath }/js/bootstrap-table/bootstrap-table-zh-CN.min.js"></script>
    <script type="text/javascript">
    	function showInsertModel(){
    		$("#insertModal").modal("show");

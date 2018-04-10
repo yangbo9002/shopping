@@ -91,18 +91,44 @@
 			width: 40px;
 			height: 60px;
 		}
+		
+		.shu{
+			padding-left:10px;
+			padding-right:10px;
+			font-size: 18px;
+		}
+		.cen{
+			text-align: center;
+		}
+		input{
+			border: 0px;
+		}
  </style>
  
  
 <script type="text/javascript">
  $(function(){
+	
 	$.ajax({
 		url:"${pageContext.request.contextPath}/shopcartsr/selectCarte?usersId=1",
 		dataType:"json",
 		success:function(data){
+			var money = 0;
 			for(i=0;i<data.length;i++){
+				money += data[i].cartNum*data[i].good.shopPrice;
 				
-				$("#d2").append("<br><div><div class='row'><div class='col-md-12 col-lg-12'>&nbsp;&nbsp;&nbsp;<input type='checkbox' "
+				$("#d2").append("<br/><div class='row cen'><div class='col-lg-1 col-md-1'><input type='checkbox' checked onclick='jian("+data[i].cartNum*data[i].good.shopPrice+",c"+i+")' id='c"+i+"'></div>"
+						+"<div class='col-lg-2 col-md-2'><img src='"+data[i].good.goodsImg+"' width='60' heigth='80'></div>"
+						+"<div class='col-lg-3 col-md-3'>"+data[i].good.goodsInfo+"</div>"
+						+"<div class='col-lg-1 col-md-1'>"+data[i].good.shopPrice+"</div>"
+						+"<div class='col-lg-2 col-md-2'><span class='btn glyphicon glyphicon-minus' onclick='jianNum("+data[i].cartId+","+data[i].cartNum+")'></span><span class='shu'>"+data[i].cartNum+"</span><span class='btn glyphicon glyphicon-plus' onclick='addNum("+data[i].cartId+","+data[i].cartNum+")'></span></div>"
+						+"<div class='col-lg-1 col-md-1'>"+data[i].cartNum*data[i].good.shopPrice+"</div>"
+						+"<div class='col-lg-1 col-md-1'>删除</div>"
+						+"</div>");
+				
+				
+				
+				/* $("#d2").append("<br><div><div class='row'><div class='col-md-12 col-lg-12'>&nbsp;&nbsp;&nbsp;<input type='checkbox' "
 						+"name='chec_name' id='chekss' value='"+data[i][0].shopId+"' onclick='chen()'>店铺:"+data[i][0].shopName+"<div class='goods' id='dd"+i+"'></div></div></div></div>");
 				for(j=0;j<data[i].length;j++){
 					
@@ -111,12 +137,14 @@
 						 +"<span class='sh'><img src='"+data[i][j].goodsImg+"'width='40' height='60'/></span>&nbsp;&nbsp;<span class='sh'>"+data[i][j].goodsInfo+"</span>&nbsp;&nbsp;"+data[i][j].attrName+"&nbsp;&nbsp;"+data[i][j].attrVal+"</div>"
 				         +"<div class='col-lg-1 col-md-1'>￥"+data[i][j].shopPrice+"</div>"
 				         +"<div class='col-lg-2 col-md-2'><div><input  type='button'value='-' disabled='disabled' id='bu-'><input type='text' id='inputnum' readonly='readonly' class='inputw' value='"+data[i][j].cartNum+"'/><input type='button'value='+' id='bu+' onclick='butt()'></div></div>"
-				         +"<div class='col-lg-1 col-md-1'>"+data[i][j].shopPriceNum+"</div>"
+				         +"<div class='col-lg-1 col-md-1'>"+data[i][j].shopPrice*data[i][j].cartNum+"</div>"
 				         +"<div class='col-lg-2 col-md-2'><a onclick='show("+data[i][j].goodsName+")'>添加到收藏夹</a><br>"
 				         +"<a href='${pageContext.request.contextPath}/shopcartsr/deleteCarts?goodsId="+data[i][j].goodsId+"'>删除</a> </div></div></br>");
 				   			
-				}
+				} */
 			}
+			
+			$("#allMoney").html(money);
 		}
 	});
 		
@@ -158,15 +186,76 @@ function ckAll(){
 
 	
    
+	 function addNum(cartId,num){
+		 $.ajax({
+			 url:"../shopcartsr/addNum",
+			 type:"post",
+			 data:{
+				"cartId": cartId,
+				"cartNum":num+1
+			 },
+			 success:function(data){
+				 location.reload();
+			 }
+		 })
+	 }
+
+	 function jianNum(cartId,num){
+		 $.ajax({
+			 url:"../shopcartsr/addNum",
+			 type:"post",
+			 data:{
+				"cartId": cartId,
+				"cartNum":num-1
+			 },
+			 success:function(data){
+				 location.reload();
+			 }
+		 })
+	 }
+
+	function jian(num,ind){
+		
+		/* $("#allMoney").html($("#allMoney").text()-num); */
+		  if($(this).attr('checked')){
+			$("#allMoney").html($("#allMoney").text()-num);
+		}else{
+			$("#allMoney").html(Number($("#allMoney").text())+num);
+		}  
+	}
+
+
+	function show(){
+		$.ajax({
+			url:"${pageContext.request.contextPath}/selectAd",
+			type:"get",
+			success:function(data){
+				$("#jie div").remove();
+				for(var i=0;i<data.length;i++){
+					var moe=$("#allMoney").text();
+					if(data[i].isDefault == 1){
+						$("#jie").append("<div class='col-lg-2 col-md-2 col-sm-2 col-xs-2'><input type='text' name='userName' value='"+data[i].uname+"' size='12'></div>"
+								+"<div class='col-lg-3 col-md-3 col-sm-3 col-xs-3'><input type='text' name='userPhone' value='"+data[i].usersPhone+"' size='12'></div>"
+								+"<div class='col-lg-5 col-md-5 col-sm-5 col-xs-5'><input type='text' name='address' value='"+data[i].address+"' size='36'></div>"
+								+"<div class='col-lg-2 col-md-2 col-sm-2 col-xs-2'><input type='text' name='goodsMoney' value='"+moe+"' size='12' readonly></div>");
+					}//"<div class='col-lg-1 col-md-1 col-sm-1 col-xs-1'><input type='radio' name='sta' checked></div>"
+					
+				/* $("#jie").append("<div class='col-lg-1 col-md-1 col-sm-1 col-xs-1'><input type='radio' name='sta' ></div>"
+						+"<div class='col-lg-2 col-md-2 col-sm-2 col-xs-2'>"+data[i].uname+"</div>"
+						+"<div class='col-lg-2 col-md-2 col-sm-2 col-xs-2'>"+data[i].usersPhone+"</div>"
+						+"<div class='col-lg-5 col-md-5 col-sm-5 col-xs-5'>"+data[i].address+"</div>"
+						+"<div class='col-lg-2 col-md-2 col-sm-2 col-xs-2'>"+$("#allMoney").text()+"</div>"); */
+				}
+			}
+		})
 	 
-
-  
-
-	
-
-
+	}
  
-
+	
+	function tijiao(){
+		
+	}
+	
 </script>
        
 </head>
@@ -339,61 +428,6 @@ function ckAll(){
 
 
 
-<div id="sm-nav-2014" class="skin-default module-wrap J_Dynamic sm-nav-2014">
-<div class="head clearfix">
-<div class="market-wrap">
-<div class="clearfix">
-<div class="logo">
-<a href=""><img src="//img.alicdn.com/tps/i4/T1AlHkFPNdXXaCwpjX.png" data-retina="//img.alicdn.com/tps/i3/T1VBb7FT0cXXaCwpjX.png" alt="淘宝女装" height="45"></a>
-</div>
-<div class="more-button" style="display: none;">
-<div class="more-label"><span>更多市场</span><b class="theme-bd-t-level2"></b></div>
-<div class="more-content"></div>
-</div>
-
-
-<div class="search" data-spm-anchor-id="a217f.8051907.249291.i1.28b63308YXQs53">
-<form action="foo" accept-charset="gbk" class="market-search" method="GET">
-<div class="search-wrap">
-<div class="input-wrap" data-spm-anchor-id="a217f.8051907.249291.i2.28b63308YXQs53">
-<div class="opt">
-<span data-type="item" data-action="//s.taobao.com/list?seller_type=taobao&amp;style=grid" data-allaction="//s.taobao.com/search" data-target="" data-cat="16">宝贝</span>
-<b class="icon"></b>
-<div class="opt-drop theme-bd-level2" style="display: none;">
-<ul>
-<li><a href=""><span data-type="shop" data-shop="yes" data-action="//s.taobao.com/search" data-target="//s.taobao.com/search" data-cat="">店铺</span></a></li>
-</ul>
-</div>
-</div>
-<div class="search-combobox" id="ks-component314" aria-pressed="false"><div class="qw"><input type="text" id="q" class="search-combobox-input" name="q" aria-haspopup="true" aria-combobox="list" role="combobox" autocomplete="off" x-webkit-grammar="builtin:translate" aria-label="请输入搜索文字" tabindex="0"></div></div>
-</div>
-<a class="local no-bg" href="" title="">搜女装</a>
-<a class="global" href="" title="搜全站">搜全站</a>
-</div>
-</form>
-</div>
-
-
-</div>
-</div>
-</div>
-
-<script>
-  (function(S){
-    S.ready(function(){
-      S.use('sm-nav-2014',function(S,Mod){
-        new Mod('','#sm-nav-2014');
-      });
-    })
-  })(KISSY)
-</script>
-<script src="//g.alicdn.com/tb-mod/sm-nav-2014/0.0.38/index.js"></script>
-</div>
-</div>
-<script src="//g.alicdn.com/tb-mod/??tb-top/0.0.4/index.js,ems-rgn/0.0.13/index.js"></script>
-	
-
-
 
 
 
@@ -403,13 +437,14 @@ function ckAll(){
 		<div class="row">
 					
 		<div class="col-lg-12 col-md-12 td-inner" id="d2">		 
-		<div class="row">
-		<div class="col-lg-2 col-md-2" id="w1">&nbsp;&nbsp;&nbsp;<input type="checkbox" id="chackid" onclick="ckAll()">全选</div>
-		<div class="col-lg-4 col-md-4" id="w2">商品信息</div>
-		<div class="col-lg-1 col-md-1" id="w3">单价</div>
-		<div class="col-lg-2 col-md-2" id="w4">数量</div>
-		<div class="col-lg-1 col-md-1" id="w5">金额</div>
-		<div class="col-lg-2 col-md-2" id="w6">操作</div>
+		<div class="row cen">
+		<div class="col-lg-1 col-md-1" id="w1">&nbsp;&nbsp;&nbsp;<input type="checkbox" id="chackid" onclick="ckAll()">全选</div>
+		<div class="col-lg-2 col-md-2" id="w2">商品</div>
+		<div class="col-lg-3 col-md-3" id="w3">商品信息</div>
+		<div class="col-lg-1 col-md-1" id="w4">单价</div>
+		<div class="col-lg-2 col-md-2" id="w5">数量</div>
+		<div class="col-lg-1 col-md-1" id="w6">金额</div>
+		<div class="col-lg-1 col-md-1" id="w7">操作</div>
 		</div>			
 		</div>
 		<div class="col-lg-1 col-md-1" id="d3"></div>		
@@ -418,21 +453,20 @@ function ckAll(){
 
 <div class="td-inner">&nbsp;</div>
 
-<div class="container">
+
 <div class="row">
-	<div class="col-lg-1 col-md-1"></div>
-	<div class="col-lg-10 col-md-10 em">
+	
+	<div class="col-lg-12 col-md-12 em">
 		<div>
 			<div class="row">		
 	<div class="col-lg-2 col-md-2">&nbsp;&nbsp;&nbsp;<input type="checkbox" align="right">&nbsp;&nbsp;&nbsp;全选</div>	
 	<div class="col-lg-3 col-md-3"><a href="">删除</a>&nbsp;&nbsp;&nbsp;<a href="">移入收藏夹</a></div>
 	<div class="col-lg-2 col-md-2"><a href="">上一页</a>&nbsp;&nbsp;&nbsp;<a href="">下一页</a></div>	
 	<div class="col-lg-3 col-md-3">已选入多少件商品</div>	
-	<div class="col-lg-2 col-md-2 jg">0.00&nbsp;&nbsp;&nbsp;<a href="#" class="em1">结账</a></div>
+	<div class="col-lg-2 col-md-2 jg"><span id="allMoney"></span>&nbsp;&nbsp;&nbsp;<span  class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" onclick="show();">结账</span></div>
 	</div>
 		</div>
 	</div>
-	<div class="col-lg-1 col-md-1"> </div>
 </div></div>
 
    		 	
@@ -455,5 +489,36 @@ function ckAll(){
 
 <div class="td-inner">&nbsp;</div>
 <div class="td-inner">&nbsp;</div>
+
+
+
+	<!-- Modal -->
+	<form action="${pageContext.request.contextPath }/addOrder" method="post">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">提交订单</h4>
+      </div>
+      <div class="modal-body container-fluid" >
+      
+        <div class="row">
+      		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">姓名</div>
+      		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">电话</div>
+      		<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">收货地址</div>
+      		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">总金额</div>
+      	</div>
+      	<div id="jie"></div>
+        </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="submit" class="btn btn-primary">确定提交</button>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
 </body>
 </html>

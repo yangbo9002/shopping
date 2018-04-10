@@ -195,7 +195,7 @@ function queryParams(params){
 </li>
 <li class="site-nav-menu site-nav-favor site-nav-multi-menu J_MultiMenu" id="J_SiteNavFavor" data-name="favor" data-spm="1997525053">
 <div class="site-nav-menu-hd">
-<a href="" target="_top">
+<a href="${pageContext.request.contextPath }/selectAddress" target="_top">
 <span class="site-nav-icon"></span>
 <span>收藏夹</span>
 </a>

@@ -73,7 +73,7 @@ public class GoodsController {
 	}
 	
 	@RequestMapping("/queryCation")
-	public String  fun4(ModelMap map,String sPageNo,String status){
+	public String  fun4(ModelMap map,String sPageNo,String status,String cid){
 		if (sPageNo == null || sPageNo.trim().length() == 0) {
             sPageNo = "1";
         }
@@ -85,9 +85,13 @@ public class GoodsController {
         }
         
 
-		String querySql = "select count(*) from Goods";
-		String sql = "select * from goods";
+		String querySql = "select count(*) from Goods where 1=1";
+		String sql = "select * from goods where 1=1";
         
+		if(cid != null && !cid.equals("")){
+        	sql += " and cid = "+cid ;
+        	querySql += " and cid = "+cid ;
+        }
         
         if(status != null && !status.equals("")){
         	if(status.equals("1")){

@@ -1,6 +1,7 @@
 package org.shopping.pojo;
 
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,7 +21,7 @@ public class Carts {//购物车表
 	private Integer cartId;//购物车编号
 	@OneToOne
 	@JoinColumn(name="goodsId")
-	@JsonIgnore
+	//@JsonIgnore
 	private Goods good;//商品
 	private Integer cartNum;//商品数量
 	@OneToOne
@@ -32,6 +33,7 @@ public class Carts {//购物车表
 	private AttriburesVal attrVal;//属性值
 	
 	@ManyToOne
+	
 	@JoinColumn(name="usersId")
 	@JsonIgnore//註解是放棄往下查詢
 	private Users user;//所属用户

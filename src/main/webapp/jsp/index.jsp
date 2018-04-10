@@ -40,7 +40,22 @@
     left:70px;
 	}
 	</style>
-	
+	<script type="text/javascript">
+		function dingdan(){
+			if("${user}" != null && "${user}" != ""){
+				location.href="${pageContext.request.contextPath }/jsp/orders.jsp";
+			}else{
+				location.href="${pageContext.request.contextPath }/jsp/Login.jsp";
+			}
+		}
+		function gouwu(){
+			if("${user}" != null && "${user}" != ""){
+				location.href="${pageContext.request.contextPath }/jsp/carts.jsp";
+			}else{
+				location.href="${pageContext.request.contextPath }/jsp/Login.jsp";
+			}
+		}
+	</script>
 </head>
 <body>
 
@@ -108,7 +123,7 @@
 </li>
 <li class="site-nav-menu site-nav-mytaobao site-nav-multi-menu J_MultiMenu" id="J_SiteNavMytaobao" data-name="mytaobao" data-spm="1997525045">
 <div class="site-nav-menu-hd">
-<a href="${pageContext.request.contextPath }/jsp/orders.jsp" target="_top">
+<a href="#" onclick="dingdan();" target="_top">
 <span>我的订单</span>
 </a>
 <span class="site-nav-arrow"><span class="site-nav-icon"></span></span>
@@ -122,7 +137,7 @@
 </li>
 <li class="site-nav-menu site-nav-cart site-nav-menu-empty site-nav-multi-menu J_MultiMenu mini-cart menu" id="J_MiniCart" data-name="cart" data-spm="1997525049">
 <div class="site-nav-menu-hd">
-<a href="${pageContext.request.contextPath }/jsp/carts.jsp" target="_top" id="mc-menu-hd">
+<a href="#" onclick="gouwu();" target="_top" id="mc-menu-hd">
 <span class="site-nav-icon site-nav-icon-highlight"></span>
 <span>购物车</span>
 <strong class="h" id="J_MiniCartNum">0</strong>
@@ -277,7 +292,7 @@
 
             <span class="cat-title 1st" data-tag="">
               
-              <a href="goods/queryCation?cid=${cation.cid }">${cation.cname }</a>
+              <a href="${pageContext.request.contextPath }/goods/queryCation?cid=${cation.cid }">${cation.cname }</a>
               
             </span>
             <span class="lala">&#xe60e;</span>
@@ -286,7 +301,7 @@
             <c:forEach items="${cation.cation }" var="ca">
             	<dd class="cat-title 2rd" data-tag="">
             
-            <a href="goods/queryCation?cid=${cation.cid }">${ca.cname }</a></dd>
+            <a href="${pageContext.request.contextPath }/goods/queryCation?cid=${ca.cid }">${ca.cname }</a></dd>
             </c:forEach>
             
             

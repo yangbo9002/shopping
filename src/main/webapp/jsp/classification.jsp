@@ -47,10 +47,20 @@
 	</style>
 	
 	<script type="text/javascript">
-		$(function(){
-			
-		})
-	
+		function dingdan(){
+			if("${user}" != null && "${user}" != ""){
+				location.href="${pageContext.request.contextPath }/jsp/orders.jsp";
+			}else{
+				location.href="${pageContext.request.contextPath }/jsp/Login.jsp";
+			}
+		}
+		function gouwu(){
+			if("${user}" != null && "${user}" != ""){
+				location.href="${pageContext.request.contextPath }/jsp/carts.jsp";
+			}else{
+				location.href="${pageContext.request.contextPath }/jsp/Login.jsp";
+			}
+		}
 	</script>
 	
 </head>
@@ -122,7 +132,7 @@
 </li>
 <li class="site-nav-menu site-nav-mytaobao site-nav-multi-menu J_MultiMenu" id="J_SiteNavMytaobao" data-name="mytaobao" data-spm="1997525045">
 <div class="site-nav-menu-hd">
-<a href="${pageContext.request.contextPath }/jsp/orders.jsp" target="_top">
+<a href="#" onclick="dingdan();" target="_top">
 <span>我的订单</span>
 </a>
 <span class="site-nav-arrow"><span class="site-nav-icon"></span></span>
@@ -136,7 +146,7 @@
 </li>
 <li class="site-nav-menu site-nav-cart site-nav-menu-empty site-nav-multi-menu J_MultiMenu mini-cart menu" id="J_MiniCart" data-name="cart" data-spm="1997525049">
 <div class="site-nav-menu-hd">
-<a href="${pageContext.request.contextPath }/jsp/carts.jsp" target="_top" id="mc-menu-hd">
+<a href="#" onclick="gouwu();" target="_top" id="mc-menu-hd">
 <span class="site-nav-icon site-nav-icon-highlight"></span>
 <span>购物车</span>
 <strong class="h" id="J_MiniCartNum">0</strong>
@@ -266,7 +276,7 @@
 <div class="market-wrap list-wrap">
 <ul class="main-list hl-list">
 <li>
-<a href="" class="list-index" data-tag="index">首页
+<a href="${pageContext.request.contextPath }/index.jsp" class="list-index" data-tag="index">首页
 <span class="icon">&#x3473;</span>
 </a>
 </li>
@@ -293,7 +303,7 @@
 
             <span class="cat-title 1st" data-tag="">
               
-              <a href="">${cation.cname }</a>
+              <a href="${pageContext.request.contextPath }/goods/queryCation?cid=${cation.cid }">${cation.cname }</a>
               
             </span>
             <span class="lala">&#xe60e;</span>
@@ -302,7 +312,7 @@
             <c:forEach items="${cation.cation }" var="ca">
             	<dd class="cat-title 2rd" data-tag="">
             
-            <a href="">${ca.cname }</a></dd>
+            <a href="${pageContext.request.contextPath }/goods/queryCation?cid=${ca.cid }">${ca.cname }</a></dd>
             </c:forEach>
             
             
@@ -333,20 +343,22 @@
 <script src="//g.alicdn.com/tb-mod/??tb-top/0.0.4/index.js,ems-rgn/0.0.13/index.js"></script>
 	
 	<br/>
+	
 	<div class="container" style="width: 88%;">
+	<c:if test="${!empty res.datas }">
 		<div class="row">
   			<div class="btn-group col-xs-12" style="border: none;">
-  				<a class="btn btn-default" href="../goods/queryCation">综合排序</a>
-  				<a class="btn btn-default" href="../goods/queryCation?status=1">人气</a>
-  				<a class="btn btn-default" href="../goods/queryCation?status=2">销量</a>
+  				<a class="btn btn-default" href="../goods/queryCation?cid=${param.cid}">综合排序</a>
+  				<a class="btn btn-default" href="../goods/queryCation?status=1&cid=${param.cid}">人气</a>
+  				<a class="btn btn-default" href="../goods/queryCation?status=2&cid=${param.cid}">销量</a>
   				<div class="btn-group">
     				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
     					按价格
       					<span class="caret"></span>
    					</button>
    				 	<ul class="dropdown-menu" role="menu">
-      					<li><a href="../goods/queryCation?status=3">从高到低</a></li>
-      					<li><a href="../goods/queryCation?status=4">从低到高</a></li>
+      					<li><a href="../goods/queryCation?status=3&cid=${param.cid}">从高到低</a></li>
+      					<li><a href="../goods/queryCation?status=4&cid=${param.cid}">从低到高</a></li>
     				</ul>
   					</div>
 			</div>
@@ -370,31 +382,28 @@
 			<nav aria-label="Page navigation">
   	<ul class="pagination">
     	<li>
-      	<a href="../goods/queryCation?sPageNo=1" aria-label="Previous">
+      	<a href="../goods/queryCation?sPageNo=1&cid=${param.cid}" aria-label="Previous">
        	 <span aria-hidden="true">&laquo;</span>
       	</a>
     	</li>
     	<c:forEach begin="1" end="${res.pageCount }" varStatus="index">
-			<li ${sPageNo == index.index ? "class='active'":""}><a href="../goods/queryCation?sPageNo=${index.index }">${index.index}</a></li>
+			<li ${sPageNo == index.index ? "class='active'":""}><a href="../goods/queryCation?sPageNo=${index.index }&cid=${param.cid}">${index.index}</a></li>
 		</c:forEach>
   
     <li>
-      <a href="../goods/queryCation?sPageNo=${res.pageCount }" aria-label="Next">
+      <a href="../goods/queryCation?sPageNo=${res.pageCount }&cid=${param.cid}" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
       </a>
     </li>
   </ul>
 </nav>
 		</div>
-	
-	
+	</c:if>
 	</div>
 	
-	
-	
-	
-	
-	
+	<c:if test="${empty res.datas }">
+		<div class="row"><div class="col-xs-12">暂无此类商品</div></div>
+	</c:if>
 	
 	
 </body>

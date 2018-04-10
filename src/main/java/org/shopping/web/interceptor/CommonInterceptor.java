@@ -24,7 +24,7 @@ public class CommonInterceptor extends HandlerInterceptorAdapter{
 	          
 	        String username =  (String)request.getSession().getAttribute("user");   
 	        if(username == null){    
-	            request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);  
+	            request.getRequestDispatcher("../jsp/login.jsp").forward(request, response);  
 	            return false;  
 	        }else  
 	            return true;     

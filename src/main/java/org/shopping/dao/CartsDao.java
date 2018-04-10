@@ -1,12 +1,11 @@
 package org.shopping.dao;
 
-import java.util.List;
 
-import org.shopping.pojo.Goods;
-import org.shopping.pojo.ShopCarts;
+import org.shopping.pojo.Carts;
 
-public interface CartsDao extends BaseDao<ShopCarts>{
-   List<ShopCarts> getCarts(String sql);//查询循环显示
+public interface CartsDao extends BaseDao<Carts>{
+   /*List<ShopCarts> getCarts(String sql);//查询循环显示
 	List<Object> getObject(String sql);//批量删除
-	
+*/	
+	void update(String sql);
 }

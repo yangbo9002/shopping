@@ -3,8 +3,12 @@ package org.shopping.web;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.shopping.pojo.OrderGoods;
+import org.shopping.pojo.Orders;
 import org.shopping.service.OrdersService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -49,5 +53,10 @@ public class OrdersController {
 		return "orders";
 	} 
 	
-
+	@RequestMapping("/addOrder")
+	public String fun3(Orders order,HttpServletRequest request){
+		HttpSession session = request.getSession();
+		os.saveOrUpdate(order);
+		return "redirect:/jsp/orders.jsp";
+	}
 }

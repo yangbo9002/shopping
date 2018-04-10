@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.shopping.dao.OrderDao;
 import org.shopping.dao.OrdersDao;
 import org.shopping.pojo.OrderGoods;
 import org.shopping.pojo.Orders;
@@ -17,6 +18,8 @@ public class OrdersServiceImpl implements OrdersService{
 	
 	@Resource
 	private OrdersDao od;
+	@Resource
+	private OrderDao ood;
 
 	@Override
 	public List<OrderGoods> select(String sql) {
@@ -37,8 +40,8 @@ public class OrdersServiceImpl implements OrdersService{
 	}
 
 	@Override
-	public void saveOrUpdate(OrderGoods orderGoods ) {
-		
+	public void saveOrUpdate(Object obj ) {
+		ood.saveOrUpdate((Orders)obj);
 		
 	}
 

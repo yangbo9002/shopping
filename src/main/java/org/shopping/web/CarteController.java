@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.shopping.pojo.Carts;
 import org.shopping.pojo.ShopCarts;
 import org.shopping.service.CartsSerivce;
 
@@ -28,11 +29,16 @@ public class CarteController {
 	
 	@RequestMapping("/selectCarte")
 	@ResponseBody
-	public List<List<ShopCarts>> getcarys(Integer usersId){
-		String sql = "select s.shopId,g.goodsId,g.goodsImg,g.goodsInfo,g.createTime,a.attrName,att.attrVal,s.shopName,c.cartNum,c.cartId,g.shopPrice  "
-				+ " from carts c,goods g,attribures a,attriburesval att,shop s "
-				+ " where c.cartId=g.goodsId and a.attrId=att.valId and s.shopId=g.shopId and c.usersId="+usersId+" order by createTime desc";
-		/*String sql = "select * from users where usersId="+usersId;*/
+	public List<Carts> getcarys(String usersId){
+		String sql = "select * from carts where usersId="+usersId;
+		List<Carts> list = cs.selectCarts(sql);
+		return list;
+		
+		
+		
+		
+		
+		/*String sql = "select * from users where usersId="+usersId;
 		List<ShopCarts> carts = cs.getCarts(sql);
 		
 		List<Integer> arrayList = new ArrayList<>();//µÍ∆ÃºØ∫œ
@@ -70,7 +76,7 @@ public class CarteController {
 			arrayList2.add(arrayList3);
 		}
 		
-		return arrayList2;
+		return arrayList2;*/
 		
 	}
 	@RequestMapping("/deleteCarts")
@@ -80,4 +86,16 @@ public class CarteController {
 		return "carts";
 	}
 	
+	@RequestMapping("/addNum")
+	@ResponseBody
+	public String addNum(String cartId,String cartNum){
+		String sql = "update carts set cartNum="+cartNum+" where cartId="+cartId;
+		cs.update(sql);
+		/*Carts cart = new Carts();
+		cart.setCartId(Integer.valueOf(cartId));
+		cart.setCartNum(Integer.valueOf(cartNum));
+		cs.savaOrUpdate(cart);*/
+		return "{status:ok}";
+	}
 }
+
