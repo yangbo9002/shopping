@@ -2,6 +2,11 @@ package org.shopping.web;
 
 
 
+
+
+import java.io.File;
+import java.io.IOException;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,7 +16,7 @@ import org.shopping.pojo.Users;
 import org.shopping.service.UsersService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 
 
@@ -41,7 +46,18 @@ public String login(String loginName,String loginPwd,HttpServletRequest request,
 	return result;
 }
 @RequestMapping("/zhuc")
-public String zhuce(Users users){//зЂВс
+public String zhuce(Users users,HttpServletRequest request,MultipartFile mFile)throws IOException{//зЂВс
+	if (!mFile.isEmpty()) {
+		String fileName = mFile.getOriginalFilename();
+		int starIndex = fileName.lastIndexOf(".");
+		String fileSuffix = fileName.substring(starIndex);
+		String filePath = request.getSession().getServletContext().getRealPath("images");
+		File file = new File(filePath,fileName);
+		/*String eurl = filePath+"img/" + System.currentTimeMillis() + fileSuffix;*/
+		String userPhoto = "images/"+mFile + fileName;
+		users.setUserPhoto(userPhoto);
+		/*FileUtils.copyInputStreamToFile(mFile.getInputStream(), new File(eurl));*/
+	}	
 	es.addUsers(users);
 	return "Login";
 }

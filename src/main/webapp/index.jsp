@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:forward page="rnfm/selectShop"></jsp:forward>
 <jsp:forward page="goods/query"></jsp:forward>
 </body>
 </html>

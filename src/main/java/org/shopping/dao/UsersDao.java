@@ -11,13 +11,10 @@ public interface UsersDao extends BaseDao<Users>{
 	
 	
 	
-	
-
 
 List<Users> queryell(String sql);	
 	
 Users selectone(String sql);
-
 
 }
  

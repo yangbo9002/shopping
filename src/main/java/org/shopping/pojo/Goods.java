@@ -20,7 +20,7 @@ public class Goods {//商品信息表
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer goodsId;//商品编号
-	private String goodsName;//商品名称
+	private String goodsName;//商品简介
 	private String goodsImg;//商品图片/////////////
 	private Double marketPrice;//市场价格
 	private Double shopPrice;//店铺价格  ///////////////////
@@ -32,7 +32,7 @@ public class Goods {//商品信息表
 	@ManyToOne
 	@JoinColumn(name="brandId")
 	private Brand brand;//所属品牌
-	private String goodsInfo;//商品描述/////////
+	private String goodsInfo;//商品详情/////////
 	private Integer saleNum;//总销售量
 	private Integer visitNum;//访问数///////
 	//private Integer shopId;
@@ -169,6 +169,6 @@ public class Goods {//商品信息表
 				+ ", saleNum=" + saleNum + ", visitNum=" + visitNum + ", shop=" + shop + ", cation=" + cation
 				+ ", goodAttr=" + goodAttr + ", image=" + image + ", createTime=" + createTime + "]";
 	}
-	
+
 	
 }

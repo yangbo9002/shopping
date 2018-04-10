@@ -21,12 +21,13 @@
 						<div class="login_title">
 							注册
 						</div>
-						<form action="${pageContext.request.contextPath}/user/zhuc" method="post">
+						<form action="${pageContext.request.contextPath}/user/zhuc" method="post" enctype="multipart/form-data">
 							
 							<div class="form_text_ipt">
 								<input name="loginName" type="text" placeholder="不能为控" required="required" pattern="^{4，16}$">
 							</div>
 							<div class="ececk_warning"><span>手机号/邮箱不能为空</span></div>
+							
 							<div class="form_text_ipt">
 							<!-- 密码只能以字母开头，长度是6-18位 -->
 								<input name="loginPwd" type="password" placeholder="密码必须为英文开头长度为6-18" pattern="^[a-zA-Z]\w{5,17}$" required="required">
@@ -36,6 +37,11 @@
 								<input name="payPwd" type="text" placeholder="输入的支付密码必须是6位数字" pattern="^\d{6}$"  required="required">
 							</div>
 							<div class="ececk_warning"><span>密码不能为空</span></div>
+							
+							<br/>
+                        <div  style="text-align:center;">                 
+                        <input type="file" name="mFile" class="form-control" >                          
+                         </div> 
 			
 							<div class="form_btn">
 								<button type="submit" onclick="javascript:window.location.href='#'">注册</button>

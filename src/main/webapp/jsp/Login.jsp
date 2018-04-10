@@ -30,7 +30,7 @@
 							</div>
 							<div class="ececk_warning"><span>手机号/邮箱不能为空</span></div>
 							<div class="form_text_ipt">
-								<input name="loginPwd" type="password" placeholder="密码" required="required" >
+								<input name="loginPwd" type="password" placeholder="密码" required="required">
 							</div>
 							<div class="ececk_warning"><span>密码不能为空</span></div>
 							<div class="form_check_ipt">
@@ -46,7 +46,7 @@
 							</div>
 							<div class="form_reg_btn">
 								<span>还没有帐号？</span><a href="zhuc.jsp">马上注册</a>
-							</div>
+							</div>e
 						</form>
 					
 					</div>

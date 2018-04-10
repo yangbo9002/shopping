@@ -6,4 +6,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class OderDaoIpml extends BaseDaoImpl<Orders> implements OrderDao{
 
+	@Override
+	public void ShopSelling(Orders orders) {
+		super.saveOrUpdate(orders);
+		
+	}
+
 }
