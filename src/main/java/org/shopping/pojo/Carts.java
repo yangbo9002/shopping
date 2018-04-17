@@ -11,6 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 @Entity
@@ -21,7 +22,7 @@ public class Carts {//购物车表
 	private Integer cartId;//购物车编号
 	@OneToOne
 	@JoinColumn(name="goodsId")
-	//@JsonIgnore
+	@JsonIgnoreProperties({"shop","cation","goodAttr","image"})
 	private Goods good;//商品
 	private Integer cartNum;//商品数量
 	@OneToOne

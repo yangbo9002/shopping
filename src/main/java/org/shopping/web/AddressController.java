@@ -59,8 +59,11 @@ public class AddressController {
 	 * @author Administrator
 	 *添加收货地址
 	 */
-	@RequestMapping("/insertAddres小儿，3")
-	public String fn3(Address address){
+	@RequestMapping("/insertAddress")
+	public String fn3(Address address,HttpServletRequest request){
+		
+		HttpSession session = request.getSession();
+		Users user = (Users)session.getAttribute("user");
 		as.insertAddress(address);
 		return "redirect:selectAddress";
 	}

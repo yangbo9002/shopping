@@ -96,7 +96,38 @@ function queryParams(params){
 	} 
 	
 	
-
+	function dingdan(){
+		if("${user}" != null && "${user}" != ""){
+			location.href="${pageContext.request.contextPath }/jsp/orders.jsp";
+		}else{
+			location.href="${pageContext.request.contextPath }/jsp/Login.jsp";
+		}
+	}
+	function gouwu(){
+		if("${user}" != null && "${user}" != ""){
+			location.href="${pageContext.request.contextPath }/jsp/carts.jsp";
+		}else{
+			location.href="${pageContext.request.contextPath }/jsp/Login.jsp";
+		}
+	}
+	function dianpu(){
+		if("${user}" != null && "${user}" != ""){
+			location.href="${pageContext.request.contextPath }/rnfm/selectShop?usersId=${user.usersId}";
+		}else{
+			location.href="${pageContext.request.contextPath }/jsp/Login.jsp";
+		}
+	}
+	function dizhi(){
+		if("${user}" != null && "${user}" != ""){
+			location.href="${pageContext.request.contextPath }/selectAddress";
+		}else{
+			location.href="${pageContext.request.contextPath }/jsp/Login.jsp";
+		}
+	}
+	
+	function key(){
+		location.href="${pageContext.request.contextPath }/goods/queryByKey?key="+encodeURIComponent(encodeURIComponent($("#q").val(),'UTF-8'),'UTF-8'); 
+	}
 </script>
 
 </head>
@@ -112,11 +143,11 @@ function queryParams(params){
 
 
 <c:if test="${empty user }">
-<a href="${pageContext.request.contextPath }/jsp/Login.jsp" target="_top" class="h">亲，请登录</a>    <a href="" target="_top">免费注册</a> 
+<a href="${pageContext.request.contextPath }/jsp/Login.jsp" target="_top" class="h">亲，请登录</a>    <a href="${pageContext.request.contextPath }/jsp/zhuc.jsp" target="_top">免费注册</a> 
 </c:if>
 
 <c:if test="${!empty user }">
-<span>${user.userName }</span>
+<span>${user.userName } <a class="btn" href="${pageContext.request.contextPath }/user/zhuxiao">注销登录</a></span>
 </c:if>
 
  </div>  
@@ -168,7 +199,7 @@ function queryParams(params){
 </li>
 <li class="site-nav-menu site-nav-mytaobao site-nav-multi-menu J_MultiMenu" id="J_SiteNavMytaobao" data-name="mytaobao" data-spm="1997525045">
 <div class="site-nav-menu-hd">
-<a href="${pageContext.request.contextPath }/jsp/orders.jsp" target="_top">
+<a href="#" onclick="dingdan();" target="_top">
 <span>我的订单</span>
 </a>
 <span class="site-nav-arrow"><span class="site-nav-icon"></span></span>
@@ -182,7 +213,7 @@ function queryParams(params){
 </li>
 <li class="site-nav-menu site-nav-cart site-nav-menu-empty site-nav-multi-menu J_MultiMenu mini-cart menu" id="J_MiniCart" data-name="cart" data-spm="1997525049">
 <div class="site-nav-menu-hd">
-<a href="${pageContext.request.contextPath }/jsp/carts.jsp" target="_top" id="mc-menu-hd">
+<a href="#" onclick="gouwu();" target="_top" id="mc-menu-hd">
 <span class="site-nav-icon site-nav-icon-highlight"></span>
 <span>购物车</span>
 <strong class="h" id="J_MiniCartNum">0</strong>
@@ -195,9 +226,9 @@ function queryParams(params){
 </li>
 <li class="site-nav-menu site-nav-favor site-nav-multi-menu J_MultiMenu" id="J_SiteNavFavor" data-name="favor" data-spm="1997525053">
 <div class="site-nav-menu-hd">
-<a href="${pageContext.request.contextPath }/selectAddress" target="_top">
+<a href="#" onclick="dizhi();" target="_top">
 <span class="site-nav-icon"></span>
-<span>收藏夹</span>
+<span>收货地址</span>
 </a>
 <span class="site-nav-arrow"><span class="site-nav-icon"></span></span>
 </div>
@@ -218,8 +249,8 @@ function queryParams(params){
 <li class="site-nav-pipe">|</li>
 <li class="site-nav-menu site-nav-seller site-nav-multi-menu J_MultiMenu" id="J_SiteNavSeller" data-name="seller" data-spm="1997525073">
 <div class="site-nav-menu-hd">
-<a href="" target="_top">
-<span>卖家中心</span>
+<a href="#" onclick="dianpu();" target="_top">
+<span>我的店铺</span>
 </a>
 <span class="site-nav-arrow"><span class="site-nav-icon"></span></span>
 </div>

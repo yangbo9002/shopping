@@ -1,5 +1,7 @@
 package org.shopping.web;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.List;
 import java.util.Map;
 
@@ -51,11 +53,21 @@ public class GoodsController {
 	 * 根据参数查询商品
 	 */
 	@RequestMapping("/queryByKey")
-	@ResponseBody
-	public List<?> fun2(String str,String key){
+	public String fun2(ModelMap map,String str,String key){
+		try {
+			key = URLDecoder.decode(key, "utf-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("    "+key);
+		str = "0";
 		String sql = "select * from goods where 1=1";
 		List<Goods> list = gs.selectByKey(sql, str, key);
-		return list;
+		List<?> cationList = gs.selectCation("SELECT * from classification where parentId is null;");
+		map.put("classification", cationList);
+		map.put("goods", list);
+		return "index";
 		
 	}
 	

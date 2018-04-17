@@ -55,6 +55,34 @@
 				location.href="${pageContext.request.contextPath }/jsp/Login.jsp";
 			}
 		}
+		function dianpu(){
+			if("${user}" != null && "${user}" != ""){
+				location.href="${pageContext.request.contextPath }/rnfm/selectShop?usersId=${user.usersId}";
+			}else{
+				location.href="${pageContext.request.contextPath }/jsp/Login.jsp";
+			}
+		}
+		function dizhi(){
+			if("${user}" != null && "${user}" != ""){
+				location.href="${pageContext.request.contextPath }/selectAddress";
+			}else{
+				location.href="${pageContext.request.contextPath }/jsp/Login.jsp";
+			}
+		}
+		
+		
+		function key(){
+			location.href="${pageContext.request.contextPath }/goods/queryByKey?key="+encodeURIComponent(encodeURIComponent($("#q").val(),'UTF-8'),'UTF-8'); 
+		}
+		function kaidian(){
+			if("${user}" != null && "${user}" != ""){
+				location.href="${pageContext.request.contextPath }/jsp/shopadd.jsp";
+			}else{
+				location.href="${pageContext.request.contextPath }/jsp/Login.jsp";
+			}
+		}
+		
+		
 	</script>
 </head>
 <body>
@@ -67,11 +95,11 @@
 <li class="site-nav-menu site-nav-login" id="J_SiteNavLogin" data-name="login" data-spm="754894437"><div class="site-nav-menu-hd">  <div class="site-nav-sign">    
 
 <c:if test="${empty user }">
-<a href="${pageContext.request.contextPath }/jsp/Login.jsp" target="_top" class="h">亲，请登录</a>    <a href="" target="_top">免费注册</a> 
+<a href="${pageContext.request.contextPath }/jsp/Login.jsp" target="_top" class="h">亲，请登录</a>    <a href="${pageContext.request.contextPath }/jsp/zhuc.jsp" target="_top">免费注册</a> 
 </c:if>
 
 <c:if test="${!empty user }">
-<span>${user.userName }</span>
+<span>${user.userName } <a class="btn" href="${pageContext.request.contextPath }/user/zhuxiao">注销登录</a></span>
 </c:if>
 
  </div>  
@@ -150,9 +178,9 @@
 </li>
 <li class="site-nav-menu site-nav-favor site-nav-multi-menu J_MultiMenu" id="J_SiteNavFavor" data-name="favor" data-spm="1997525053">
 <div class="site-nav-menu-hd">
-<a href="" target="_top">
+<a href="#" onclick="dizhi();" target="_top">
 <span class="site-nav-icon"></span>
-<span>收藏夹</span>
+<span>我的收货地址</span>
 </a>
 <span class="site-nav-arrow"><span class="site-nav-icon"></span></span>
 </div>
@@ -173,8 +201,8 @@
 <li class="site-nav-pipe">|</li>
 <li class="site-nav-menu site-nav-seller site-nav-multi-menu J_MultiMenu" id="J_SiteNavSeller" data-name="seller" data-spm="1997525073">
 <div class="site-nav-menu-hd">
-<a href="" target="_top">
-<span>卖家中心</span>
+<a href="#" onclick="dianpu();" target="_top">
+<span>我的店铺</span>
 </a>
 <span class="site-nav-arrow"><span class="site-nav-icon"></span></span>
 </div>
@@ -192,8 +220,8 @@
 </li>
 <li class="site-nav-menu site-nav-service site-nav-multi-menu J_MultiMenu" id="J_SiteNavService" data-name="service" data-spm="754895749">
 <div class="site-nav-menu-hd">
-<a href="" target="_top">
-<span>联系客服</span>
+<a href="#" target="_top" onclick="kaidian();">
+<span>开店</span>
 </a>
 <span class="site-nav-arrow"><span class="site-nav-icon"></span></span>
 </div>
@@ -243,14 +271,14 @@
 <b class="icon"></b>
 <div class="opt-drop theme-bd-level2" style="display: none;">
 <ul>
-<li><a href=""><span data-type="shop" data-shop="yes" data-action="//s.taobao.com/search" data-target="//s.taobao.com/search" data-cat="">店铺</span></a></li>
+
 </ul>
 </div>
 </div>
 <div class="search-combobox" id="ks-component314" aria-pressed="false"><div class="qw"><input type="text" id="q" class="search-combobox-input" name="q" aria-haspopup="true" aria-combobox="list" role="combobox" autocomplete="off" x-webkit-grammar="builtin:translate" aria-label="请输入搜索文字" tabindex="0"></div></div>
 </div>
-<a class="local no-bg" href="" title="">搜女装</a>
-<a class="global" href="" title="搜全站">搜全站</a>
+<a class="local no-bg" href="#" title="" onclick="key();">搜女装</a>
+<a class="global" href="#" title="搜全站" onclick="key();">搜全站</a>
 </div>
 </form>
 </div>
@@ -374,9 +402,9 @@
   <div class="panel-body row">
   	<c:forEach items="${goods }" var="good">
   		<div class="col-lg-2">
-    	<a href=""><img src="${good.goodsImg }" width="165" height="240"></a>
-    	<div class="sheng"><a href="">${good.goodsInfo }</a></div>
-    	<span class="se">￥ 168</span> &nbsp; &nbsp;<span class="xian">199</span>
+    	<a href="${pageContext.request.contextPath }/shop/GoodId?goodsId=${good.goodsId }"><img src="${good.goodsImg }" width="165" height="240"></a>
+    	<div class="sheng"><a href="${pageContext.request.contextPath }/shop/GoodId?goodsId=${good.goodsId }">${good.goodsInfo }</a></div>
+    	<span class="se">￥ ${good.shopPrice }</span> &nbsp; &nbsp;<span class="xian">${good.marketPrice }</span>
     
     	</div>
   	</c:forEach>

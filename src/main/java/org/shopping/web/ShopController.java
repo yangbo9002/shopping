@@ -52,7 +52,7 @@ public class ShopController {
 	//用户新建自己的店铺
 	public String shopNew(Shop shop){
 		ss.shopNew(shop);
-		return "index.jsp";
+		return "index";
 	}
 
 	@RequestMapping("/News")

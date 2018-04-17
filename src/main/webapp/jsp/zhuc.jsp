@@ -5,9 +5,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="../css/reset.css"/>
-<link rel="stylesheet" href="../css/common.css"/>
-<link rel="stylesheet" href="../css/font-awesome.min.css"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/reset.css"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/common.css"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/font-awesome.min.css"/>
 </head>
 <body>
 		<div class="wrap login_wrap">
@@ -44,7 +44,7 @@
                          </div> 
 			
 							<div class="form_btn">
-								<button type="submit" onclick="javascript:window.location.href='#'">注册</button>
+								<button>注册</button>
 							</div>
 							<div class="form_reg_btn">
 								<span>已有帐号？</span><a href="Login.jsp">马上登录</a>
@@ -55,8 +55,8 @@
 				</div>
 			</div>
 		</div>
-		<script type="text/javascript" src="js/jquery.min.js" ></script>
-		<script type="text/javascript" src="js/common.js" ></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.js" ></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath }/js/common.js" ></script>
 		<div style="text-align:center;">
 
 </div>

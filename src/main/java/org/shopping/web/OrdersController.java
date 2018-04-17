@@ -4,11 +4,11 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.shopping.pojo.OrderGoods;
 import org.shopping.pojo.Orders;
+import org.shopping.pojo.Users;
 import org.shopping.service.OrdersService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -24,14 +24,15 @@ public class OrdersController {
 	
 	@RequestMapping("selectOrders")	
 	@ResponseBody
-	public List<OrderGoods> fn1(String key){
+	public List<OrderGoods> fn1(String key,HttpServletRequest request){
 		String sql = null;;
+		Integer usersId = ((Users)request.getSession().getAttribute("user")).getUsersId();
 		if(key == null || key.equals("")){
-			sql = "select * from ordergoods";
+			sql = "select og.* from ordergoods og,orders o where og.ordersId=o.orderId and usersId="+usersId;
 		} else if(key.equals("1")){
-			sql = "select og.* from ordergoods og,orders os,goods go where og.goodsId=go.goodsId and os.orderId=og.ordersId and os.isPay=0;";
+			sql = "select og.* from ordergoods og,orders os,goods go where og.goodsId=go.goodsId and os.orderId=og.ordersId and os.isPay=0 and usersId="+usersId;
 		} else if(key.equals("2")){
-			sql = "select og.* from ordergoods og,orders os,goods go where og.goodsId=go.goodsId and os.orderId=og.ordersId and os.orderStatus=0;";
+			sql = "select og.* from ordergoods og,orders os,goods go where og.goodsId=go.goodsId and os.orderId=og.ordersId and os.orderStatus=0 and usersId="+usersId;
 		}
 		List<OrderGoods> od = os.select(sql);
 		/*map.put("od", od);
@@ -45,8 +46,8 @@ public class OrdersController {
 	}
 	
 	@RequestMapping("selectDfh")	
-	public String fn2(ModelMap map){
-		String sq = "select og.* from ordergoods og,orders os,goods go where og.goodsId=go.goodsId and os.orderId=og.ordersId and os.orderStatus=0;";
+	public String fn2(ModelMap map,HttpServletRequest request){
+		String sq = "select og.* from ordergoods og,orders os,goods go where og.goodsId=go.goodsId and os.orderId=og.ordersId and os.orderStatus=0 and usersId="+((Users)request.getSession().getAttribute("user")).getUsersId();
 		List<OrderGoods> oda = os.select(sq);
 		map.put("oda", oda);
 		
@@ -54,9 +55,13 @@ public class OrdersController {
 	} 
 	
 	@RequestMapping("/addOrder")
-	public String fun3(Orders order,HttpServletRequest request){
+	public String fun3(Orders order,String gid,HttpServletRequest request,OrderGoods or){
 		HttpSession session = request.getSession();
-		os.saveOrUpdate(order);
+		Users user = (Users)session.getAttribute("user");
+		String sql = "insert into orders(address,goodsMoney,isPay,orderStatus,userName,userPhone,usersId)"
+				+" value('"+order.getAddress()+"',"+order.getGoodsMoney()+",0,0,'"+order.getUserName()+"','"+order.getUserPhone()+"',"+user.getUsersId()+");";
+		os.save(sql,gid);
+		
 		return "redirect:/jsp/orders.jsp";
 	}
 }

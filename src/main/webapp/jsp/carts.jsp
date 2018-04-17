@@ -113,13 +113,13 @@
 			for(i=0;i<data.length;i++){
 				money += data[i].cartNum*data[i].good.shopPrice;
 				
-				$("#d2").append("<br/><div class='row cen'><div class='col-lg-1 col-md-1'><input type='checkbox' checked onclick='jian("+data[i].cartNum*data[i].good.shopPrice+",c"+i+")' id='c"+i+"'></div>"
+				$("#d2").append("<br/><div class='row cen'><div class='col-lg-1 col-md-1'><input type='checkbox' checked onclick='jian("+data[i].cartNum*data[i].good.shopPrice+",this)' name='c' value='"+data[i].good.goodsId+"-"+data[i].cartNum+"'/></div>"
 						+"<div class='col-lg-2 col-md-2'><img src='"+data[i].good.goodsImg+"' width='60' heigth='80'></div>"
 						+"<div class='col-lg-3 col-md-3'>"+data[i].good.goodsInfo+"</div>"
 						+"<div class='col-lg-1 col-md-1'>"+data[i].good.shopPrice+"</div>"
 						+"<div class='col-lg-2 col-md-2'><span class='btn glyphicon glyphicon-minus' onclick='jianNum("+data[i].cartId+","+data[i].cartNum+")'></span><span class='shu'>"+data[i].cartNum+"</span><span class='btn glyphicon glyphicon-plus' onclick='addNum("+data[i].cartId+","+data[i].cartNum+")'></span></div>"
 						+"<div class='col-lg-1 col-md-1'>"+data[i].cartNum*data[i].good.shopPrice+"</div>"
-						+"<div class='col-lg-1 col-md-1'>删除</div>"
+						+"<div class='col-lg-1 col-md-1'><a href='"+data[i].cartId+"'>删除</a></div>"
 						+"</div>");
 				
 				
@@ -157,7 +157,9 @@ function butt(){
 
 //全选
 function ckAll(){
-    var flag=document.getElementById("chackid").checked;
+	
+	 $("[type='checkbox']").attr("checked",'true');
+    /* var flag=document.getElementById("chackid").checked;
     var cks=document.getElementsByName("chec_name");
    // console.log(cks[1]);
     var ckss=document.getElementsByName("cartgoodId_checkbox");
@@ -166,7 +168,7 @@ function ckAll(){
          for(var j=0;j<ckss.length;j++){
         	ckss[j].checked=flag;
         } 
-    }
+    } */
 }
  
   function chen(){
@@ -210,14 +212,14 @@ function ckAll(){
 		 })
 	 }
 
-	function jian(num,ind){
-		
-		/* $("#allMoney").html($("#allMoney").text()-num); */
-		  if($(this).attr('checked')){
-			$("#allMoney").html($("#allMoney").text()-num);
+	function jian(num,a){
+			console.log(a);
+		 /* $("#allMoney").html($("#allMoney").text()-num); */ 
+		   if($(a).prop('checked')){
+				$("#allMoney").html(Number($("#allMoney").text())+num);
 		}else{
-			$("#allMoney").html(Number($("#allMoney").text())+num);
-		}  
+			$("#allMoney").html($("#allMoney").text()-num);
+		}   
 	}
 
 
@@ -247,17 +249,64 @@ function ckAll(){
 	 
 	}
  
-	
-	function tijiao(){
-		
+	function key(){
+		location.href="${pageContext.request.contextPath }/goods/queryByKey?key="+encodeURIComponent(encodeURIComponent($("#q").val(),'UTF-8'),'UTF-8'); 
 	}
 	
+	function tijiao(){
+		 obj = document.getElementsByName("c");
+		   q = document.getElementById("f1");
+		  
+		checkval = "";
+		for(k in obj){
+			if(obj[k].checked)
+  				checkval += obj[k].value + ",";
+		}
+		$("#gid").val(checkval);
+	q.submit();
+	}
+	
+	function dingdan(){
+		if("${user}" != null && "${user}" != ""){
+			location.href="${pageContext.request.contextPath }/jsp/orders.jsp";
+		}else{
+			location.href="${pageContext.request.contextPath }/jsp/Login.jsp";
+		}
+	}
+	function gouwu(){
+		if("${user}" != null && "${user}" != ""){
+			location.href="${pageContext.request.contextPath }/jsp/carts.jsp";
+		}else{
+			location.href="${pageContext.request.contextPath }/jsp/Login.jsp";
+		}
+	}
+	function dianpu(){
+		if("${user}" != null && "${user}" != ""){
+			location.href="${pageContext.request.contextPath }/rnfm/selectShop?usersId=${user.usersId}";
+		}else{
+			location.href="${pageContext.request.contextPath }/jsp/Login.jsp";
+		}
+	}
+	function dizhi(){
+		if("${user}" != null && "${user}" != ""){
+			location.href="${pageContext.request.contextPath }/selectAddress";
+		}else{
+			location.href="${pageContext.request.contextPath }/jsp/Login.jsp";
+		}
+	}
+	
+	function del(cartsId){
+		$.ajax({
+			
+		})
+	}
 </script>
        
 </head>
 <body>
 <div class="container">
 <div>
+
 
 <div data-spm="620129" data-moduleid="80582" data-name="tb-top" data-guid="620129" id="guid-620129" data-scene-id="0" data-scene-version="" data-hidden="" data-gitgroup="tb-mod" data-ext="" class="tb-top J_Module" tms="tb-top/0.0.4" tms-datakey="0"><link rel="stylesheet" href="//g.alicdn.com/??kg/global-util/1.0.6/index-min.css,kg/tb-nav/2.4.2/index-min.css">
 <style>.footer a {display:inline !important;}</style>
@@ -268,11 +317,11 @@ function ckAll(){
 
 
 <c:if test="${empty user }">
-<a href="${pageContext.request.contextPath }/jsp/Login.jsp" target="_top" class="h">亲，请登录</a>    <a href="" target="_top">免费注册</a> 
+<a href="${pageContext.request.contextPath }/jsp/Login.jsp" target="_top" class="h">亲，请登录</a>    <a href="${pageContext.request.contextPath }/jsp/zhuc.jsp" target="_top">免费注册</a> 
 </c:if>
 
 <c:if test="${!empty user }">
-<span>${user.userName }</span>
+<span>${user.userName } <a class="btn" href="${pageContext.request.contextPath }/user/zhuxiao">注销登录</a></span>
 </c:if>
 
  </div>  
@@ -324,7 +373,7 @@ function ckAll(){
 </li>
 <li class="site-nav-menu site-nav-mytaobao site-nav-multi-menu J_MultiMenu" id="J_SiteNavMytaobao" data-name="mytaobao" data-spm="1997525045">
 <div class="site-nav-menu-hd">
-<a href="${pageContext.request.contextPath }/jsp/orders.jsp" target="_top">
+<a href="#" onclick="dingdan();" target="_top">
 <span>我的订单</span>
 </a>
 <span class="site-nav-arrow"><span class="site-nav-icon"></span></span>
@@ -338,7 +387,7 @@ function ckAll(){
 </li>
 <li class="site-nav-menu site-nav-cart site-nav-menu-empty site-nav-multi-menu J_MultiMenu mini-cart menu" id="J_MiniCart" data-name="cart" data-spm="1997525049">
 <div class="site-nav-menu-hd">
-<a href="${pageContext.request.contextPath }/jsp/carts.jsp" target="_top" id="mc-menu-hd">
+<a href="#" onclick="gouwu();" target="_top" id="mc-menu-hd">
 <span class="site-nav-icon site-nav-icon-highlight"></span>
 <span>购物车</span>
 <strong class="h" id="J_MiniCartNum">0</strong>
@@ -351,9 +400,9 @@ function ckAll(){
 </li>
 <li class="site-nav-menu site-nav-favor site-nav-multi-menu J_MultiMenu" id="J_SiteNavFavor" data-name="favor" data-spm="1997525053">
 <div class="site-nav-menu-hd">
-<a href="" target="_top">
+<a href="#" onclick="dizhi();" target="_top">
 <span class="site-nav-icon"></span>
-<span>收藏夹</span>
+<span>收货地址</span>
 </a>
 <span class="site-nav-arrow"><span class="site-nav-icon"></span></span>
 </div>
@@ -374,8 +423,8 @@ function ckAll(){
 <li class="site-nav-pipe">|</li>
 <li class="site-nav-menu site-nav-seller site-nav-multi-menu J_MultiMenu" id="J_SiteNavSeller" data-name="seller" data-spm="1997525073">
 <div class="site-nav-menu-hd">
-<a href="" target="_top">
-<span>卖家中心</span>
+<a href="#" onclick="dianpu();" target="_top">
+<span>我的店铺</span>
 </a>
 <span class="site-nav-arrow"><span class="site-nav-icon"></span></span>
 </div>
@@ -429,12 +478,13 @@ function ckAll(){
 
 	<div class="td-inner">&nbsp;</div>
 	
+	
 <div id="d1" class="container">
 		<div class="row">
 					
 		<div class="col-lg-12 col-md-12 td-inner" id="d2">		 
 		<div class="row cen">
-		<div class="col-lg-1 col-md-1" id="w1">&nbsp;&nbsp;&nbsp;<input type="checkbox" id="chackid" onclick="ckAll()">全选</div>
+		<div class="col-lg-1 col-md-1" id="w1">&nbsp;&nbsp;&nbsp;</div>
 		<div class="col-lg-2 col-md-2" id="w2">商品</div>
 		<div class="col-lg-3 col-md-3" id="w3">商品信息</div>
 		<div class="col-lg-1 col-md-1" id="w4">单价</div>
@@ -455,7 +505,7 @@ function ckAll(){
 	<div class="col-lg-12 col-md-12 em">
 		<div>
 			<div class="row">		
-	<div class="col-lg-2 col-md-2">&nbsp;&nbsp;&nbsp;<input type="checkbox" align="right">&nbsp;&nbsp;&nbsp;全选</div>	
+	<div class="col-lg-2 col-md-2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>	
 	<div class="col-lg-3 col-md-3"><a href="">删除</a>&nbsp;&nbsp;&nbsp;<a href="">移入收藏夹</a></div>
 	<div class="col-lg-2 col-md-2"><a href="">上一页</a>&nbsp;&nbsp;&nbsp;<a href="">下一页</a></div>	
 	<div class="col-lg-3 col-md-3">已选入多少件商品</div>	
@@ -489,7 +539,7 @@ function ckAll(){
 
 
 	<!-- Modal -->
-	<form action="${pageContext.request.contextPath }/addOrder" method="post">
+	<form action="${pageContext.request.contextPath }/addOrder" method="post" id="f1">
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -505,12 +555,12 @@ function ckAll(){
       		<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">收货地址</div>
       		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">总金额</div>
       	</div>
-      	<div id="jie"></div>
+      	<div id="jie"><input type="hidden" id="gid" name="gid"></div>
         </div>
       
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button type="submit" class="btn btn-primary">确定提交</button>
+        <button type="button" class="btn btn-primary" onclick="tijiao();">确定提交</button>
       </div>
     </div>
   </div>

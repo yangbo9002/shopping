@@ -1,12 +1,14 @@
 package org.shopping.web;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.shopping.pojo.Carts;
-import org.shopping.pojo.ShopCarts;
+import org.shopping.pojo.Goods;
+import org.shopping.pojo.Users;
 import org.shopping.service.CartsSerivce;
 
 import org.springframework.stereotype.Controller;
@@ -80,9 +82,21 @@ public class CarteController {
 		
 	}
 	@RequestMapping("/deleteCarts")
-	public String deleteCarts(Integer goodsId){
-		System.out.println("É¾³ýÉÌÆ·");
-		cs.deleteGood(goodsId);
+	public String deleteCarts(Integer cartsId){
+		
+		cs.deleteGood(cartsId);
+		return "carts";
+	}
+	
+	@RequestMapping("/addCarts")
+	public String addCarts(Goods good,HttpServletRequest request){
+		HttpSession session = request.getSession();
+		Users user = (Users)session.getAttribute("user");
+		Carts cart = new Carts();
+		cart.setCartNum(1);
+		cart.setUser(user);
+		cart.setGood(good);
+		cs.savaOrUpdate(cart);
 		return "carts";
 	}
 	

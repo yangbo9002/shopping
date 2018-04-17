@@ -6,5 +6,5 @@ import org.shopping.pojo.Orders;
 
 public interface OrdersDao extends BaseDao<OrderGoods>{
 
-
+	
 }

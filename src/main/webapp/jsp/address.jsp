@@ -34,7 +34,7 @@
 	<body>
 		<div class="container">	
 			
-		<dir clas="row">
+		<dir class="row">
 			<div class="col-lg-12 col-sm-12">
 	<table class="table table-bordered table-hover" style="table-layout:fixed;">
 		
@@ -61,7 +61,7 @@
 	</table>
 	</div>
 	</div>	
-	</div>
+	
 	
 	<script type="text/javascript">
 	function del(addressId){
@@ -128,7 +128,7 @@
 
 				</div>
 				<div class="modal-footer" style="text-align: center;">
-				<img src="img/2.jpg" width="30" height="30"><font color="red">以上信息信息很重要，请您认真填写!</font>	
+				<font color="red">以上信息信息很重要，请您认真填写!</font>	
 
 				</div>
 			</div>		

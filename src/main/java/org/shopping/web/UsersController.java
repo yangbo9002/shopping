@@ -61,5 +61,11 @@ public String zhuce(Users users,HttpServletRequest request,MultipartFile mFile)t
 	es.addUsers(users);
 	return "Login";
 }
+
+@RequestMapping("/zhuxiao")
+public String zhuxiao(HttpServletRequest request){
+	request.getSession().setAttribute("user", null);
+	return "../index";
+}
 }
 

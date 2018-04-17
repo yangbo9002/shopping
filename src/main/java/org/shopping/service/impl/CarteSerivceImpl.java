@@ -31,7 +31,7 @@ public class CarteSerivceImpl implements CartsSerivce{
 
 	@Override
 	public void deleteGood(Integer goodsId) {
-		scd.delete(goodsId);
+		cd.delete(goodsId);
 		
 	}
 

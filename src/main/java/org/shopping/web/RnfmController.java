@@ -45,11 +45,12 @@ public class RnfmController {
 			int last = fileimg.lastIndexOf(".");
 			String sub = fileimg.substring(last);
 			HttpSession session = request.getSession();
-			String path = session.getServletContext().getRealPath("imgege");
+			String path = session.getServletContext().getRealPath("images");
 			fileimg = System.currentTimeMillis()+sub;
-			File file = new File(path,fileimg);			
+			
+			File file = new File("C:\\Tomcat 7.0\\webapps\\images\\",fileimg);			
 			mFile.transferTo(file);			
-			goodsImg="/imgege/"+fileimg;
+			goodsImg="/images/"+fileimg;
 			goods.setGoodsImg(goodsImg);			
 		}									
 		rs.rnfmNew(goods);
@@ -63,8 +64,15 @@ public class RnfmController {
 	 * µÍ‰Å ◊ÌìÔ@ æ
 	 */
 	@RequestMapping("/selectShop")	
-	public String selectShop(ModelMap map){
-		String sql = "select * from goods";
+	public String selectShop(ModelMap map,String usersId,String shopId){
+		
+		String sql = "select * from goods where 1=1";
+		if(usersId != null && !usersId.equals("")){
+			sql += " and shopId = (select shopId from shop where usersId="+usersId+")";
+		}
+		if(shopId != null && !shopId.equals("")){
+			sql += " and shopId="+shopId;
+		}
 		List<Goods> selsctShop = rs.selsctShop(sql);
 		map.put("selsctShop", selsctShop);
 		System.out.println("îµ¡ø"+selsctShop);

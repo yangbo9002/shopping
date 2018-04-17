@@ -50,7 +50,7 @@ public class Shopserviceimpl implements ShopService{
 	@Override
 	public void ShopSelling(Goods goods, Orders orders, Logistics logistics) {
 		gd.ShopSelling(goods);
-		od.ShopSelling(orders);
+		
 		ld.ShopSelling(logistics);
 		
 	}
